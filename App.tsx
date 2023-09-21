@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { useFonts, Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
+import { NavigationContainer } from '@react-navigation/native';
+import GuestScreens from './src/screens/Guest';
+
+
+
 
 export default function App() {
+  let [fontsLoaded, fontError] = useFonts({
+    Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold
+  });
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <GuestScreens />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
