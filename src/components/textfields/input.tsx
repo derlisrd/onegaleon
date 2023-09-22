@@ -1,7 +1,12 @@
 import { TextInput, StyleSheet } from "react-native";
 
-function Input({placeholder}:{placeholder: string}) {
-    return (<TextInput style={style.input} placeholder={placeholder} />  );
+ 
+
+
+function Input({placeholder, ...rest}:{placeholder: string,}) {
+    return (<TextInput style={style.input} placeholder={placeholder} 
+        {...rest}
+    />  );
 }
 
 const style = StyleSheet.create({

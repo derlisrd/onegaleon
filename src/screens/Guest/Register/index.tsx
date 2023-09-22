@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import { ButtonPrimary, Input, Title } from "../../../components";
-
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-
-
+import { useState } from "react";
 
 function RegisterScreen() {
+
+    const [form,setForm] = useState({})
+
     return (
         <View style={style.container}>
             <Title>REGISTRO</Title>

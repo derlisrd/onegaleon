@@ -14,6 +14,16 @@ export const APICALLER = {
             return {sucess:false,error:error}
         }
 
+    },
+    register: async ({email,password,name}:{email: String, password: String,name:string})=>{
+
+        try {
+           const res = await api.post('/auth/register',{email,password,name});
+           return res.data;
+        } catch (error) {
+            return {sucess:false,error:error}
+        }
+
     }
 
 }

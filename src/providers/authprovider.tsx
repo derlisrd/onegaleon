@@ -8,7 +8,7 @@ interface MyContextProps {
 
 
 const AuthContext = createContext<MyContextProps>({
-    isAuth: true
+    isAuth: false
 })
 
 
@@ -16,7 +16,7 @@ const AuthContext = createContext<MyContextProps>({
 
 function AuthProvider({children}:{children: ReactNode})  {
 
-    const [isAuth,setIsAuth] = useState<boolean>(true);
+    const [isAuth,setIsAuth] = useState<boolean>(false);
 
     const values = {isAuth}
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
