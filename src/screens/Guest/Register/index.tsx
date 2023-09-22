@@ -1,27 +1,30 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { ButtonPrimary, Input, Title } from "../../../components";
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { useState } from "react";
+import { GuestStackParamList } from "..";
+import { StackScreenProps } from "@react-navigation/stack";
+import TextLink from "../../../components/text/textlink";
 
-function RegisterScreen() {
+type guestScreenNavigationType = StackScreenProps<GuestStackParamList,'register'>
+
+function RegisterScreen({navigation}: guestScreenNavigationType) {
 
     const [form,setForm] = useState({})
 
     return (
         <View style={style.container}>
             <Title>REGISTRO</Title>
-            <Icon name="rocket" size={30} color="#900" />
             <View>
-                <Input placeholder="Nombre" />
-                <Input placeholder="Email" />
-                <Input placeholder="Contraseña" />
-                <Input placeholder="Repetir contraseña" />
+                <Input placeholder="Nombre" label="Nombre" inputMode="text" />
+                <Input placeholder="user@example.com" label="E-mail" inputMode="email" />
+                <Input placeholder="Contraseña" secureTextEntry />
+                <Input placeholder="Repetir contraseña" secureTextEntry />
             </View>
             <View>
                 <ButtonPrimary onPress={()=>{}}>registrarme</ButtonPrimary>
             </View>
             <View>
-
+                <TextLink onPress={()=>{navigation.pop()}}>Ya tengo cuenta, loguearme </TextLink>
             </View>
     </View>
     );
