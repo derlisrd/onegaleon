@@ -4,21 +4,29 @@ import { useState } from "react";
 import { GuestStackParamList } from "..";
 import { StackScreenProps } from "@react-navigation/stack";
 import TextLink from "../../../components/text/textlink";
+import { widthScreen } from "../../../utils/dimensions";
+import LoadingTransparent from "../../../components/loadings/loadingtransparent";
+import SubTitle from "../../../components/text/subtitle";
 
 type guestScreenNavigationType = StackScreenProps<GuestStackParamList,'register'>
 
 function RegisterScreen({navigation}: guestScreenNavigationType) {
-
+    const [loading,setLoading] = useState(false)
     const [form,setForm] = useState({})
 
     return (
         <View style={style.container}>
+            {
+                loading && <LoadingTransparent message="Cargando..." />
+            }
             <Title>REGISTRO</Title>
-            <View>
+            <SubTitle>Rellena este formulario para registrarte.</SubTitle>
+            
+            <View style={style.inputs}>
                 <Input placeholder="Nombre" label="Nombre" inputMode="text" />
                 <Input placeholder="user@example.com" label="E-mail" inputMode="email" />
-                <Input placeholder="Contraseña" secureTextEntry />
-                <Input placeholder="Repetir contraseña" secureTextEntry />
+                <Input placeholder="Contraseña" label="Contraseña" secureTextEntry />
+                <Input placeholder="Repetir contraseña" label="Repetir contraseña" secureTextEntry />
             </View>
             <View>
                 <ButtonPrimary onPress={()=>{}}>registrarme</ButtonPrimary>
@@ -34,7 +42,11 @@ const style = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        width: widthScreen
+    },
+    inputs:{
+        width: widthScreen*0.9
     }
 })
 

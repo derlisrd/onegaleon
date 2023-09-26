@@ -35,7 +35,7 @@ function Input({placeholder,onChangeText,inputMode,secureTextEntry,label, error,
 
 const style = StyleSheet.create({
     container:{
-        marginVertical:3,
+        marginVertical:2,
     },
     novalid:{
         borderColor:'#EC0C74',

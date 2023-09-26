@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import {Pressable,View,Text,StyleSheet} from 'react-native';
+import { colors } from '../../utils/colors';
 
 
 
@@ -14,7 +15,7 @@ function ButtonPrimary ({children, onPress}: {children: ReactNode , onPress:  ()
 const style = StyleSheet.create({
 
     button:{
-        backgroundColor:'#000',
+        backgroundColor: colors.primary,
         padding:14,
         minWidth:280,
         borderRadius:8,
