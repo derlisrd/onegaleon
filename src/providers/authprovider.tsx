@@ -52,10 +52,11 @@ function AuthProvider({children}:{children: ReactNode})  {
          //verificar sesion activa
     const verificar = useCallback(async()=>{
         setCheckingAuthLoading(true)
-        const storage =  await Storage.get({key:'userData'});
+        const store=  await Storage.get({key:'userData'});
         
-        if(storage){
-            setLogin(storage)
+        if(store){
+            setIsAuth(true)
+            setLogin(store)
         }
         setCheckingAuthLoading(false)
     },[Storage])
