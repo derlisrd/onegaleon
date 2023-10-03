@@ -22,8 +22,8 @@ export const APICALLER = {
         try {
            const res = await api.post('/auth/register',{email,password,name});
            return res.data;
-        } catch (error) {
-            return {success:false,error:error}
+        }catch (error: any) {
+            return {success:false, error: error.message, message: error.response.data.message, status: error.response.status }
         }
 
     }
