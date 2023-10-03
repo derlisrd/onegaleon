@@ -1,9 +1,11 @@
 import { Text, View, StyleSheet } from "react-native";
 import { colors } from "../../../utils/colors";
+import FloatActionButton from "../../../components/buttons/floatactionbutton";
 
 function HomeScreen() {
     return ( <View style={style.container}>
         <Text>HOME PAGE</Text>
+        <FloatActionButton />
     </View> );
 }
 
