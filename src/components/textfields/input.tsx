@@ -1,7 +1,7 @@
-import { TextInput, StyleSheet, InputModeOptions,View,Text } from "react-native";
+import { TextInput, StyleSheet, InputModeOptions,View,Text, TextInputProps } from "react-native";
 
 
-type Props = {
+interface Props extends TextInputProps  {
     placeholder?: string
     onChangeText?: ((text: string) => void) | undefined;
     inputMode?: InputModeOptions,
@@ -9,7 +9,7 @@ type Props = {
     label?: string
     error?: boolean | false
     errorMessage?: string,
-    value?: string
+    value?: string,
 }
 
 function Input({placeholder,onChangeText,inputMode,secureTextEntry,label, error, errorMessage,value}: Props) {

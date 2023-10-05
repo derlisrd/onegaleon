@@ -7,6 +7,14 @@ const api = axios.create({baseURL:'https://ovispa.saeta.app',headers:{'x-api-key
 
 export const APICALLER = {
 
+    check: async(token: string)=>{
+        try {
+            const res = await api.post('/auth/login',{},{headers:{'Authorization':`Bearer ${token}`}});
+            return res.data;
+         } catch (error: any) {
+             return {success:false, error: error.message, message: translateLoginError(error.response.status) }
+         }
+    },
     login: async ({email,password}:{email: String, password: String}) =>{
 
         try {

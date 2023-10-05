@@ -19,6 +19,8 @@ const style = StyleSheet.create({
         right:32,
         bottom:32,
         borderRadius:48,
+        borderColor:colors.primary,
+        borderWidth:1,
         backgroundColor:colors.primary
     }
 })
