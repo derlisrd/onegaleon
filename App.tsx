@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import MainScreens from './src/screens';
 import AuthProvider from './src/providers/authprovider';
+import { StatusBar } from 'expo-status-bar';
+import { colors } from './src/utils/colors';
 
 
 
@@ -20,6 +22,7 @@ export default function App() {
       <AuthProvider>
         <MainScreens />
       </AuthProvider>
+      <StatusBar backgroundColor={colors.bgcolor} style='dark'  />
     </NavigationContainer>
   );
 }

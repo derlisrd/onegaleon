@@ -1,15 +1,23 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet,ScrollView } from "react-native";
 import { colors } from "../../../utils/colors";
 import FloatActionButton from "../../../components/buttons/floatactionbutton";
 import { HomeStackParamList } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
+import { Title } from "../../../components";
 
 
 type Props = StackScreenProps<HomeStackParamList,'mainhome'>
 
 function Screen({navigation}: Props) {
     return ( <View style={style.container}>
-        <Text>HOME screen</Text>
+            <View style={style.container2}>
+                <Title>Octubre:</Title>
+            <ScrollView>
+                
+            </ScrollView>
+            </View>
+        
+        
         <FloatActionButton onPress={()=>{ navigation.push('add')}} />
     </View>  );
 }
@@ -19,6 +27,9 @@ const style = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: colors.bgcolor
+    },
+    container2:{
+        marginTop:24
     }
 })
 

@@ -1,12 +1,20 @@
 import axios from 'axios';
 import { translateLoginError } from './errorhandler';
+import { ENV } from '../config/env';
 
 
 
-const api = axios.create({baseURL:'https://ovispa.saeta.app',headers:{'x-api-key':'s9d1e5xx'}})
+const api = axios.create({baseURL:ENV.baseURL,headers:{'x-api-key':ENV.xapikey}})
 
 export const APICALLER = {
-
+    get: async({url,token}:{url:string,token:string})=>{
+        try {
+            const res = await api.get(url,{headers:{'Authorization':`Bearer ${token}`}});
+            return res.data;
+         } catch (error: any) {
+             return {success:false, error: error.message, message: translateLoginError(error.response.status) }
+         }
+    },
     check: async(token: string)=>{
         try {
             const res = await api.post('/auth/login',{},{headers:{'Authorization':`Bearer ${token}`}});
