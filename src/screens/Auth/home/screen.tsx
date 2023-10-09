@@ -4,17 +4,21 @@ import FloatActionButton from "../../../components/buttons/floatactionbutton";
 import { HomeStackParamList } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
 import { Title } from "../../../components";
+import MovimientosList from "../../../components/list/movimientoslist";
+import { useHome } from "./provider";
 
 
 
 type Props = StackScreenProps<HomeStackParamList,'mainhome'>
 
 function Screen({navigation}: Props) {
+    const {movimientos} = useHome()
+
     return ( <View style={style.container}>
             <View style={style.container2}>
                 <Title>Octubre:</Title>
             <ScrollView>
-                
+                <MovimientosList items={movimientos} />
             </ScrollView>
             </View>
         

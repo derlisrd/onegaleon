@@ -1,4 +1,4 @@
-import {  StyleSheet, SafeAreaView, View} from 'react-native'
+import {  StyleSheet, SafeAreaView, Alert} from 'react-native'
 import { ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2 } from '../../../components';
 import { CONSTANTES } from '../../../utils/constantes';
 import { useState } from 'react';
@@ -7,27 +7,39 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { HomeStackParamList } from '.';
 import { APICALLER } from '../../../services/api';
 import { useAuthProvider } from '../../../providers/authprovider';
+import {  movimientoType, postresponse } from '../../../models/post';
+import { useHome } from './provider';
 
 type Props = StackScreenProps<HomeStackParamList,'add'>
 
 
 function Add({navigation}: Props) {
+    
     const {userData} = useAuthProvider()
-    const [form,setForm] = useState({
-        tipo:'0',
-        detalles:'',
-        modo:'0',
-        valor:''
-    })
+    const {pushMovimiento} = useHome()
+    const initialForm = {
+      tipo:'0',
+      detalles:'',
+      modo:'0',
+      valor:''
+  }
+    const [form,setForm] = useState(initialForm)
     const handleChange = (val: string,name: string)=>{
       setForm({ ...form, [name]: (val) });
     }
     const agregar = async ()=>{
-      const res = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
+      const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
+      if(res.success){
+        const newmovimiento : movimientoType = res.results
+        pushMovimiento(newmovimiento)
+      }else{
+        Alert.alert("Error","Ha ocurrido un error de conexión.")
+      }
       
     }
     const cancelar = ()=>{
       navigation.pop()
+      setForm(initialForm)
     }
 
     return (
