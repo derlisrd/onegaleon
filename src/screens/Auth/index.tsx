@@ -11,8 +11,8 @@ const {Navigator,Screen} = createMaterialBottomTabNavigator();
 
 function AuthScreens() {
     return (
-      <Navigator initialRouteName='Home'>
-        <Screen name="Home" component={HomeScreen} 
+      <Navigator initialRouteName='home'>
+        <Screen name="home" component={HomeScreen} 
         options={{ tabBarLabel:'Inicio', tabBarIcon: ({color})=>(<MaterialCommunityIcons name="home" color={color} size={26} />) }} />
         
         <Screen name="Wallet" component={ProfileScreen}

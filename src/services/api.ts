@@ -7,6 +7,14 @@ import { ENV } from '../config/env';
 const api = axios.create({baseURL:ENV.baseURL,headers:{'x-api-key':ENV.xapikey}})
 
 export const APICALLER = {
+    post: async({url,data,token}:{url:string,data:{},token:string})=>{
+        try {
+            const res = await api.post(url,data,{headers:{'Authorization':`Bearer ${token}`}});
+            return res.data;
+         } catch (error: any) {
+             return {success:false, error: error.message, message: translateLoginError(error.response.status) }
+         }
+    },
     get: async({url,token}:{url:string,token:string})=>{
         try {
             const res = await api.get(url,{headers:{'Authorization':`Bearer ${token}`}});

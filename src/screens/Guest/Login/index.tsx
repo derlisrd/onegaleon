@@ -58,7 +58,7 @@ function LoginScreen({navigation}: guestScreenNavigationType) {
             <SubTitle>Bienvenido devuelta. Si no tienes una cuenta registrate un momento.</SubTitle>
             <View style={style.inputs}>
                 <Input placeholder="Email o usuario" error={error.code===1} errorMessage={error.code===1 ? error.msg : ''} value={email} onChangeText={setEmail} label="Ingresa email o usuario:" />
-                <Input placeholder="Contraseña" error={error.code===2} errorMessage={error.code===2 ? error.msg : ''} label="Ingresa tu contraseña" value={pass} onChangeText={setPass} secureTextEntry />
+                <Input placeholder="Contraseña" error={error.code===2} errorMessage={error.code===2 ? error.msg : ''} autoCapitalize="none" label="Ingresa tu contraseña" value={pass} onChangeText={setPass} secureTextEntry />
             </View>
             <View>
                 <ButtonPrimary onPress={tryLogin}>ingresar</ButtonPrimary>

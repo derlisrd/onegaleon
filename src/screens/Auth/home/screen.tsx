@@ -6,6 +6,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { Title } from "../../../components";
 
 
+
 type Props = StackScreenProps<HomeStackParamList,'mainhome'>
 
 function Screen({navigation}: Props) {
@@ -24,6 +25,7 @@ function Screen({navigation}: Props) {
 const style = StyleSheet.create({
     container:{
         flex:1,
+        paddingTop: 24,
         justifyContent:'center',
         alignItems:'center',
         backgroundColor: colors.bgcolor

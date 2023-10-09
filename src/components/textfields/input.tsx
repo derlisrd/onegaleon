@@ -12,7 +12,7 @@ interface Props extends TextInputProps  {
     value?: string,
 }
 
-function Input({placeholder,onChangeText,inputMode,secureTextEntry,label, error, errorMessage,value}: Props) {
+function Input({placeholder,onChangeText,inputMode,secureTextEntry,label, error, errorMessage,value, autoCapitalize}: Props) {
     return (
         <View style={style.container}>
             <View>
@@ -21,7 +21,7 @@ function Input({placeholder,onChangeText,inputMode,secureTextEntry,label, error,
             <View>
             <TextInput style={[style.font, style.input, error ? style.novalid : style.normal]} placeholder={placeholder} 
         onChangeText={onChangeText}
-        value={value}
+        value={value} autoCapitalize={autoCapitalize}
         inputMode={inputMode}
         secureTextEntry={secureTextEntry}
     />  
@@ -47,8 +47,8 @@ const style = StyleSheet.create({
         borderWidth:1,
         minWidth:280,
         backgroundColor:'#FFF',
-        fontSize:12,
-        padding:12,
+        fontSize:14,
+        padding:16,
         borderRadius:8,
     },
     font:{
