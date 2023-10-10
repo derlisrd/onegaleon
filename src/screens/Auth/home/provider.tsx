@@ -2,6 +2,7 @@ import { ReactNode, createContext, useCallback, useContext, useEffect, useState 
 import { APICALLER } from "../../../services/api";
 import { useAuthProvider } from "../../../providers/authprovider";
 import { movimientoType } from "../../../models/post";
+import { movimientosResponse } from "../../../models/get";
 
 type movimientosType = Array<movimientoType>
 
@@ -33,9 +34,10 @@ function HomeProvider({children}: Props) {
     const [loading,setLoading] = useState(true)
          //verificar sesion activa
     const getMovimientos = useCallback(async()=>{
-        const res = await APICALLER.get({url:'/movimientos',token:userData.token})
-        //console.log(res);
-        setMovimientos([])
+        const res : movimientosResponse = await APICALLER.get({url:'/movimientos',token:userData.token})
+        if(res.success){
+            setMovimientos(res.results)
+        }
         setLoading(false)
     },[userData])
     const pushMovimiento = (newmovimiento : movimientoType)=>{
@@ -44,7 +46,7 @@ function HomeProvider({children}: Props) {
         movimientosantiguos.push(newmovimiento)
         setLoading(false)
     }
-
+    
     useEffect(() => {
         const ca = new AbortController(); let isActive = true;
         if (isActive) {getMovimientos();}

@@ -14,5 +14,5 @@ export type typeMovimientoResponse = {
 }
 
 export type movimientoType = {
-    created_at?: string, detalles?: string, id?: number, modo?: string, valor?: string
+    created_at?: string, detalles?: string, id?: number, modo?: string, valor?: string, tipo?:string
 }

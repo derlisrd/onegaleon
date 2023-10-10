@@ -9,6 +9,8 @@ import { APICALLER } from '../../../services/api';
 import { useAuthProvider } from '../../../providers/authprovider';
 import {  movimientoType, postresponse } from '../../../models/post';
 import { useHome } from './provider';
+import { widthScreen } from '../../../utils/dimensions';
+import Loading from '../../../components/loadings/loading';
 
 type Props = StackScreenProps<HomeStackParamList,'add'>
 
@@ -23,18 +25,23 @@ function Add({navigation}: Props) {
       modo:'0',
       valor:''
   }
+    const [loading,setLoading] = useState(false)
     const [form,setForm] = useState(initialForm)
     const handleChange = (val: string,name: string)=>{
       setForm({ ...form, [name]: (val) });
     }
     const agregar = async ()=>{
+      setLoading(true)
       const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
       if(res.success){
         const newmovimiento : movimientoType = res.results
         pushMovimiento(newmovimiento)
+        setForm(initialForm)
+        navigation.pop()
       }else{
         Alert.alert("Error","Ha ocurrido un error de conexión.")
       }
+      setLoading(false)
       
     }
     const cancelar = ()=>{
@@ -44,7 +51,9 @@ function Add({navigation}: Props) {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Title2>Agregar un movimiento</Title2>
+        {
+          loading ? <Loading /> : <>
+          <Title2>Agregar un movimiento</Title2>
         <InputMaskLg
           onChangeText={(text, rawText) => {
             handleChange(rawText,'valor')
@@ -52,7 +61,7 @@ function Add({navigation}: Props) {
           value={form.valor}
           inputMode="numeric"
           label="Valor"
-        />
+          />
         <RadioGroup
           layout="row"
           label='Tipo de movimiento:'
@@ -61,13 +70,15 @@ function Add({navigation}: Props) {
             handleChange(val,'tipo')
           }}
           selectedId={(form.tipo)}
-        />
+          />
         <Input
           placeholder="Detalla los datos de tu movimiento"
           label="Detalles de movimiento" value={(form.detalles)} onChangeText={(val)=>{handleChange(val,'detalles')}}
-        />
+          />
         <ButtonPrimary onPress={agregar}>Agregar</ButtonPrimary>
         <ButtonSecondary onPress={cancelar}>Cancelar</ButtonSecondary>
+          </>
+        }
       </SafeAreaView>
     );
 }
@@ -79,7 +90,8 @@ const styles = StyleSheet.create({
         backgroundColor:colors.bgcolor,
         justifyContent:'center',
         paddingHorizontal:16,
-        flexDirection:'column'
+        flexDirection:'column',
+        width:widthScreen
     }
 })
 

@@ -11,6 +11,7 @@ const style = StyleSheet.create({
         fontSize:36,
         marginVertical:8,
         color: colors.primary,
+        marginHorizontal:4,
         fontFamily:'Montserrat_700Bold'
     }
 })

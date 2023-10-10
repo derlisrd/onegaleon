@@ -18,7 +18,7 @@ export const APICALLER = {
     },
     get:  async({url,token}:{url:string,token:string})=>{
         try {
-            const res : postDataReponse = await api.get(url,{headers:{'Authorization':`Bearer ${token}`}});
+            const res  = await api.get(url,{headers:{'Authorization':`Bearer ${token}`}});
             return res.data;
          } catch (error: any) {
              return {success:false, error: error.message, message: translateLoginError(error.response.status) }
