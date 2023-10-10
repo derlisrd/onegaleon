@@ -17,7 +17,7 @@ function Screen({navigation}: Props) {
     const {movimientos} = useHome()
 
     useEffect(()=>{
-        console.log(movimientos);
+        //console.log(movimientos);
         
     },[movimientos])
     

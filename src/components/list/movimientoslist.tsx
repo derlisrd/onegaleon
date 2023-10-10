@@ -15,7 +15,7 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <Icon name={e.tipo==="1" ? 'upsquare': 'downsquare'} size={32} color={'#000'} />
+                        <Icon name={e.modo===1 ? 'upsquare': 'downsquare'} size={32} color={e.modo===1 ? "#333": "#098"} />
                         <Text style={[style.itemDetalle, style.font]}>{e.detalles}</Text>
                     </View>
                     <View style={style.valor}>
