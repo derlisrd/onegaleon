@@ -1,7 +1,8 @@
+import { objetosMovimientos } from "./get"
 
 export type postresponse = {
     success: boolean
-    results: {} 
+    results: objetosMovimientos 
 }
 
 export type postDataReponse = {

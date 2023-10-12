@@ -1,16 +1,15 @@
 import { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 import { APICALLER } from "../../../services/api";
 import { useAuthProvider } from "../../../providers/authprovider";
-import { movimientoType } from "../../../models/post";
-import { movimientosResponse } from "../../../models/get";
 
-type movimientosType = Array<movimientoType>
+import { getMovimientos, movimientosResponse, objetosMovimientos } from "../../../models/get";
+
 
 interface HomeContextProps {
-    movimientos: movimientosType
+    movimientos: getMovimientos
     loading: boolean,
     getMovimientos:()=>void
-    pushMovimiento: (newmovimiento: movimientoType)=>void
+    pushMovimiento: (newmovimiento: objetosMovimientos)=>void
 }
 
 
@@ -30,7 +29,7 @@ interface Props {
 
 function HomeProvider({children}: Props) {
     const {userData} = useAuthProvider()
-    const [movimientos,setMovimientos] = useState<movimientosType>([])
+    const [movimientos,setMovimientos] = useState<getMovimientos>([])
     const [loading,setLoading] = useState(true)
          //verificar sesion activa
     const getMovimientos = useCallback(async()=>{
@@ -40,10 +39,12 @@ function HomeProvider({children}: Props) {
         }
         setLoading(false)
     },[userData])
-    const pushMovimiento = (newmovimiento : movimientoType)=>{
+
+    const pushMovimiento = (newmovimiento : objetosMovimientos)=>{
         setLoading(true)
-        const movimientosantiguos  = [...movimientos]
+        const movimientosantiguos : getMovimientos  = [...movimientos]    
         movimientosantiguos.push(newmovimiento)
+        setMovimientos(movimientosantiguos)
         setLoading(false)
     }
     

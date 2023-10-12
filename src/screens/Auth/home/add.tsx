@@ -11,6 +11,7 @@ import {  movimientoType, postresponse } from '../../../models/post';
 import { useHome } from './provider';
 import { widthScreen } from '../../../utils/dimensions';
 import Loading from '../../../components/loadings/loading';
+import { objetosMovimientos } from '../../../models/get';
 
 type Props = StackScreenProps<HomeStackParamList,'add'>
 
@@ -20,7 +21,7 @@ function Add({navigation}: Props) {
     const {userData} = useAuthProvider()
     const {pushMovimiento} = useHome()
     const initialForm = {
-      tipo:'0',
+      tipo:'1',
       detalles:'',
       modo:'0',
       valor:''
@@ -34,7 +35,7 @@ function Add({navigation}: Props) {
       setLoading(true)
       const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
       if(res.success){
-        const newmovimiento : movimientoType = res.results
+        const newmovimiento : objetosMovimientos = res.results
         pushMovimiento(newmovimiento)
         setForm(initialForm)
         navigation.pop()
@@ -64,12 +65,12 @@ function Add({navigation}: Props) {
           />
         <RadioGroup
           layout="row"
-          label='Tipo de movimiento:'
-          radioButtons={CONSTANTES.tipos}
+          label='Modo de movimiento:'
+          radioButtons={CONSTANTES.modos}
           onPress={(val) => {
-            handleChange(val,'tipo')
+            handleChange(val,'modo')
           }}
-          selectedId={(form.tipo)}
+          selectedId={(form.modo)}
           />
         <Input
           placeholder="Detalla los datos de tu movimiento"

@@ -7,7 +7,7 @@ import { Title } from "../../../components";
 import MovimientosList from "../../../components/list/movimientoslist";
 import { useHome } from "./provider";
 import { widthScreen } from "../../../utils/dimensions";
-import { useEffect } from "react";
+
 
 
 
@@ -16,10 +16,7 @@ type Props = StackScreenProps<HomeStackParamList,'mainhome'>
 function Screen({navigation}: Props) {
     const {movimientos} = useHome()
 
-    useEffect(()=>{
-        //console.log(movimientos);
-        
-    },[movimientos])
+
     
     return ( <View style={style.container}>
             <View style={style.container2}>

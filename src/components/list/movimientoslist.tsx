@@ -1,11 +1,10 @@
 import { View, Text , StyleSheet} from "react-native";
-import { movimientoType } from "../../models/post";
 import { helpers } from "../../utils/helpers";
 import Icon from 'react-native-vector-icons/AntDesign' 
-type itemsMovimientosType = Array<movimientoType>
+import { getMovimientos } from "../../models/get";
 
 interface Props {
-    items: itemsMovimientosType
+    items: getMovimientos
 }
 
 
@@ -15,11 +14,11 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <Icon name={e.modo===1 ? 'upsquare': 'downsquare'} size={32} color={e.modo===1 ? "#333": "#098"} />
+                        <Icon name={e.modo===1 ? 'upsquare': 'downsquare'} size={32} color={e.modo===1 ? "#098": "#e85a4d"} />
                         <Text style={[style.itemDetalle, style.font]}>{e.detalles}</Text>
                     </View>
                     <View style={style.valor}>
-                        <Text style={[style.textValor, style.font]}>{helpers.numberFormant(e.valor ?? '0')}</Text>
+                        <Text style={[style.textValor, style.font]}>{(e.valor).toLocaleString('de-DE')}</Text>
                     </View>
                 </View>
             ))
