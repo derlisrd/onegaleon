@@ -1,5 +1,5 @@
-import {  StyleSheet, SafeAreaView, Alert} from 'react-native'
-import { ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2 } from '../../../components';
+import {  StyleSheet, SafeAreaView, Alert, View} from 'react-native'
+import { ButtonBack, ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2 } from '../../../components';
 import { CONSTANTES } from '../../../utils/constantes';
 import { useState } from 'react';
 import { colors } from '../../../utils/colors';
@@ -7,7 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { HomeStackParamList } from '.';
 import { APICALLER } from '../../../services/api';
 import { useAuthProvider } from '../../../providers/authprovider';
-import {  movimientoType, postresponse } from '../../../models/post';
+import { postresponse } from '../../../models/post';
 import { useHome } from './provider';
 import { widthScreen } from '../../../utils/dimensions';
 import Loading from '../../../components/loadings/loading';
@@ -51,9 +51,13 @@ function Add({navigation}: Props) {
     }
 
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={loading ? styles.center : styles.container }>
         {
-          loading ? <Loading /> : <>
+          loading ? <Loading /> : 
+          <View style={styles.container2}>
+            <View>
+              <ButtonBack onPress={cancelar} />
+            </View>
           <Title2>Agregar un movimiento</Title2>
         <InputMaskLg
           onChangeText={(text, rawText) => {
@@ -78,19 +82,29 @@ function Add({navigation}: Props) {
           />
         <ButtonPrimary onPress={agregar}>Agregar</ButtonPrimary>
         <ButtonSecondary onPress={cancelar}>Cancelar</ButtonSecondary>
-          </>
+          </View>
         }
       </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    center:{
+      justifyContent:'center',
+      alignItems:'center',
+      flex:1,
+      backgroundColor:colors.bgcolor
+    },
+    container2:{
+      flexDirection:'column',
+    },
     container:{
         flex:1,
         paddingTop:32,
         backgroundColor:colors.bgcolor,
-        justifyContent:'center',
+        justifyContent:'flex-start',
         paddingHorizontal:16,
+        alignItems:'center',
         flexDirection:'column',
         width:widthScreen
     }
