@@ -1,10 +1,8 @@
 import { View, StyleSheet,ScrollView } from "react-native";
 import { colors } from "../../../utils/colors";
-import FloatActionButton from "../../../components/buttons/floatactionbutton";
 import { HomeStackParamList } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
-import { Title } from "../../../components";
-import MovimientosList from "../../../components/list/movimientoslist";
+import { FloatActionButton, Loading, MovimientosList, Title } from "../../../components";
 import { useHome } from "./provider";
 import { widthScreen } from "../../../utils/dimensions";
 
@@ -14,16 +12,20 @@ import { widthScreen } from "../../../utils/dimensions";
 type Props = StackScreenProps<HomeStackParamList,'mainhome'>
 
 function Screen({navigation}: Props) {
-    const {movimientos} = useHome()
+    const {movimientos,loading} = useHome()
 
 
     
     return ( <View style={style.container}>
             <View style={style.container2}>
-                <Title>Octubre:</Title>
+                {
+                    loading ? <Loading /> : <>
+                    <Title>Octubre:</Title>
                 <ScrollView style={style.scrollview}>
                     <MovimientosList items={movimientos} />
                 </ScrollView>
+                    </>
+                }
             </View>
         
         

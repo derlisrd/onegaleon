@@ -1,6 +1,6 @@
 import { View, Text , StyleSheet} from "react-native";
 import { helpers } from "../../utils/helpers";
-import Icon from 'react-native-vector-icons/AntDesign' 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons' 
 import { getMovimientos } from "../../models/get";
 
 interface Props {
@@ -14,11 +14,15 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <Icon name={e.modo===1 ? 'upsquare': 'downsquare'} size={32} color={e.modo===1 ? "#098": "#e85a4d"} />
-                        <Text style={[style.itemDetalle, style.font]}>{e.detalles}</Text>
+                        <Icon name={e.modo===1 ? 'cash-fast': 'receipt'} size={32} color={e.modo===1 ? "#098": "#e85a4d"} />
+                        <View style={style.textosView} >
+                            <Text style={[style.font]}>{e.modo===1 ? 'Recibiste:' : 'Pagaste:'}</Text>
+                            <Text style={[style.itemDetalle, style.fontBold]}>{e.detalles}</Text>
+                        </View>
                     </View>
                     <View style={style.valor}>
-                        <Text style={[style.textValor, style.font]}>{(e.valor).toLocaleString('de-DE')}</Text>
+                        <Text style={[style.fecha, style.font]}>{helpers.fechadMY(e.created_at)}</Text>
+                        <Text style={[e.modo===1 ? style.ingreso : style.egreso, style.fontBold]}>{helpers.numberFormant(e.valor)}</Text>
                     </View>
                 </View>
             ))
@@ -31,15 +35,19 @@ const style = StyleSheet.create({
         width:'100%',
         flex:1,
         paddingHorizontal:18,
-        backgroundColor:'silver'
     },
 
     item:{
-        paddingVertical:8,
+        paddingVertical:12,
         justifyContent:'space-between',
-        flexDirection:'row'
+        flexDirection:'row',
+        borderBottomWidth:1,
+        borderColor:'silver'
     },
     font:{
+        fontFamily:'Montserrat_400Regular'
+    },
+    fontBold:{
         fontFamily:'Montserrat_700Bold',
     },
     detalles:{
@@ -49,14 +57,24 @@ const style = StyleSheet.create({
         flexWrap:'wrap',
         marginRight:4
     },
+    textosView:{
+        flexDirection:'column',
+        flexWrap:'wrap'
+    },
     valor:{
 
     },
-    textValor:{
+    fecha:{
 
     },
+    egreso:{
+        color:'red'
+    },
+    ingreso:{
+        color:'green'
+    },
     itemDetalle:{
-        
+        flex:1
     }
 })
 
