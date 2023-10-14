@@ -2,6 +2,7 @@ import { View, Text , StyleSheet} from "react-native";
 import { helpers } from "../../utils/helpers";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons' 
 import { getMovimientos } from "../../models/get";
+import { widthScreen } from "../../utils/dimensions";
 
 interface Props {
     items: getMovimientos
@@ -32,7 +33,7 @@ function MovimientosList({items}:Props) {
 
 const style = StyleSheet.create({
     container:{
-        width:'100%',
+        width: widthScreen*0.99,
         flex:1,
         paddingHorizontal:18,
     },
@@ -41,6 +42,7 @@ const style = StyleSheet.create({
         paddingVertical:12,
         justifyContent:'space-between',
         flexDirection:'row',
+        flexWrap:'wrap',
         borderBottomWidth:1,
         borderColor:'silver'
     },
@@ -52,14 +54,12 @@ const style = StyleSheet.create({
     },
     detalles:{
         flexDirection:'row',
-        alignItems:'flex-start',
-        gap:8,
-        flexWrap:'wrap',
+        gap:2,
         marginRight:4
     },
     textosView:{
+        flexWrap:'wrap',
         flexDirection:'column',
-        flexWrap:'wrap'
     },
     valor:{
 
@@ -74,7 +74,9 @@ const style = StyleSheet.create({
         color:'green'
     },
     itemDetalle:{
-        flex:1
+        maxWidth: widthScreen*0.55,
+        flexWrap:'wrap',
+        fontSize:12
     }
 })
 

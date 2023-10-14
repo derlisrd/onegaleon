@@ -1,12 +1,10 @@
 import 'react-native-gesture-handler';
-import { useFonts, Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
+import { useFonts, Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import { NavigationContainer } from '@react-navigation/native';
 
 import MainScreens from './src/screens';
 import AuthProvider from './src/providers/authprovider';
-import { StatusBar } from 'expo-status-bar';
-import { colors } from './src/utils/colors';
-
+import ThemeProvider from './src/providers/themeprovider';
 
 
 
@@ -19,10 +17,11 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <MainScreens />
-      </AuthProvider>
-      <StatusBar backgroundColor={colors.bgcolor} style='dark'  />
+      <ThemeProvider>
+        <AuthProvider>
+          <MainScreens />
+        </AuthProvider>
+      </ThemeProvider>
     </NavigationContainer>
   );
 }

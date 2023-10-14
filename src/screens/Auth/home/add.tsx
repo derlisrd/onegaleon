@@ -12,6 +12,7 @@ import { useHome } from './provider';
 import { widthScreen } from '../../../utils/dimensions';
 import Loading from '../../../components/loadings/loading';
 import { objetosMovimientos } from '../../../models/get';
+import { movimientosModelInsertResponse } from '../../../models/movimientos';
 
 type Props = StackScreenProps<HomeStackParamList,'add'>
 
@@ -34,9 +35,11 @@ function Add({navigation}: Props) {
     const agregar = async ()=>{
       setLoading(true)
       const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
+      
+      
       if(res.success){
-        const newmovimiento : objetosMovimientos = res.results
-        pushMovimiento(newmovimiento)
+        const respuestaModelada : objetosMovimientos = movimientosModelInsertResponse(res.results)
+        pushMovimiento(respuestaModelada)
         setForm(initialForm)
         navigation.pop()
       }else{

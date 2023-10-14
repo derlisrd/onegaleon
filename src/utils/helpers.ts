@@ -14,11 +14,24 @@ export const helpers = {
         const dia = fechaObjeto.getDate();
         const mes1 = fechaObjeto.getMonth() + 1;
         const anio = fechaObjeto.getFullYear();
-        const meses = ['ene','feb','mar','abr','may','jun','jul','agos','set','oct','nov','dice']
+        const meses = ['','ene','feb','mar','abr','may','jun','jul','agos','set','oct','nov','dice']
         // Formateamos la fecha
         const fechaFormateada = `${dia}-${meses[mes1]}-${anio}`;
         
         return fechaFormateada;
+    },
+    mesActualString: ()=>{
+      // Crear una nueva instancia de Date
+        const fechaActual = new Date();
+
+        // Array con los nombres de los meses
+        const nombresMeses = [
+          "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+          "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        // Obtener el mes actual (0-11) y usarlo como índice para el array de nombres
+        return nombresMeses[fechaActual.getMonth()];
     }
 
 }
