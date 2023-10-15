@@ -21,7 +21,7 @@ const style = StyleSheet.create({
         borderRadius:48,
         borderColor:colors.primary,
         borderWidth:1,
-        backgroundColor:colors.primary
+        backgroundColor:colors.semiTransparent
     }
 })
 
