@@ -1,9 +1,11 @@
-import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { View, ActivityIndicator, StyleSheet, Image } from "react-native";
 import { colors } from "../../utils/colors";
+
 
 function SplashScreen() {
   return (
     <View style={styles.container}>
+      <Image source={require('../../../assets/icon.png')} style={{width:200,height:200}} />
       <ActivityIndicator size="large" color={colors.primary} />
     </View>
   );

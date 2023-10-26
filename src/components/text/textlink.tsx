@@ -22,7 +22,7 @@ const style = StyleSheet.create({
   text: {
     color: '#000',
     fontFamily:'Montserrat_400Regular',
-    fontSize:16
+    fontSize:18
   },
 });
 

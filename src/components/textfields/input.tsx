@@ -1,4 +1,5 @@
 import { TextInput, StyleSheet, InputModeOptions,View,Text, TextInputProps } from "react-native";
+import { colors } from "../../utils/colors";
 
 
 interface Props extends TextInputProps  {
@@ -38,15 +39,15 @@ const style = StyleSheet.create({
         marginVertical:2,
     },
     novalid:{
-        borderColor:'#EC0C74',
+        borderColor:colors.error,
     },
     normal:{
-        borderColor:'#868688',
+        borderColor: colors.primary,
     },
     input:{
         borderWidth:1,
         minWidth:280,
-        backgroundColor:'#FFF',
+        backgroundColor:colors.white,
         fontSize:14,
         padding:16,
         borderRadius:8,
@@ -56,10 +57,10 @@ const style = StyleSheet.create({
     },
     label:{
         marginBottom:2,
-        color:'gray'
+        color: colors.primary
     },
     error:{
-        color:'#EC0C74',
+        color:colors.error,
         fontSize:12
     }
 })
