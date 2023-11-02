@@ -48,9 +48,7 @@ const style = StyleSheet.create({
         paddingHorizontal: 12,
     },
     scrollview: {
-
         width: widthScreen,
-
     }
 })
 

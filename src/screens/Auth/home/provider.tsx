@@ -3,6 +3,7 @@ import { APICALLER } from "../../../services/api";
 import { useAuthProvider } from "../../../providers/authprovider";
 
 import { getMovimientos, movimientosResponse, objetosMovimientos } from "../../../models/get";
+import moment from "moment";
 
 
 interface HomeContextProps {
@@ -36,7 +37,11 @@ function HomeProvider({children}: Props) {
     const [loading,setLoading] = useState(true)
          //verificar sesion activa
     const getMovimientos = useCallback(async()=>{
-        const res : movimientosResponse = await APICALLER.get({url:'/movimientos',token:userData.token})
+        const primerDiaMes = moment().startOf('month').format('YYYY-MM-DD');
+        const ultimoDiaMes = moment().endOf('month').format('YYYY-MM-DD');
+        
+        
+        const res : movimientosResponse = await APICALLER.get({url:`/movimientos?fecha_inicio=${primerDiaMes}&fecha_fin=${ultimoDiaMes}`,token:userData.token})
         if(res.success){
             let balanceLocal = 0
             res.results.forEach(el=>{
