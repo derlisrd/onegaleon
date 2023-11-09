@@ -5,5 +5,7 @@ export const colors = {
     bgcolor:'#e6e6e6',
     white:'#fff',
     error:'#EC0C74',
-    semiTransparent:'rgba(52, 52, 52, 0.7)'
+    semiTransparent:'rgba(52, 52, 52, 0.7)',
+    yellowLight:'#fdffd9',
+    black72:'#142f30'
 }
