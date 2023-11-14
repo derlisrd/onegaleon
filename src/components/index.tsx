@@ -13,4 +13,7 @@ import Title2 from "./text/title2";
 import Input from "./textfields/input";
 import InputMaskLg from "./textfields/inputmasklg";
 import BalanceBox from "./box/balance";
-export {ButtonPrimary,ButtonSecondary, Input,Title, InputMaskLg,SubTitle,Title2,Select,RadioGroup,ButtonBack,FloatActionButton,LoadingTransparent,Loading,MovimientosList,BalanceBox}
+import InputPass from "./textfields/inputpass";
+import AddButton from "./buttons/addbutton";
+
+export {AddButton,InputPass,ButtonPrimary,ButtonSecondary, Input,Title, InputMaskLg,SubTitle,Title2,Select,RadioGroup,ButtonBack,FloatActionButton,LoadingTransparent,Loading,MovimientosList,BalanceBox}

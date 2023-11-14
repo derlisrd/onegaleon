@@ -17,7 +17,7 @@ function MainScreens() {
     {
         isAuth ? <AuthScreens /> : <GuestScreens />
     }
-    <StatusBar backgroundColor={'#fff'} style='dark'  />
+    <StatusBar style='dark'  />
     </Fragment> );
 }
 

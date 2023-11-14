@@ -8,9 +8,9 @@ function Title({children}: {children: ReactNode}) {
 
 const style = StyleSheet.create({
     title:{
-        fontSize:32,
+        fontSize:28,
         marginVertical:8,
-        color: colors.primary,
+        color: colors.black72,
         marginHorizontal:8,
         fontFamily:'Montserrat_700Bold'
     }

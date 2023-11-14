@@ -3,6 +3,7 @@ import { helpers } from "../../utils/helpers";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons' 
 import { getMovimientos } from "../../models/get";
 import { widthScreen } from "../../utils/dimensions";
+import { colors } from "../../utils/colors";
 
 interface Props {
     items: getMovimientos
@@ -15,7 +16,7 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <Icon name={e.modo===1 ? 'cash-fast': 'receipt'} size={32} color={e.modo===1 ? "#098": "#e85a4d"} />
+                        <Icon name={e.modo===1 ? 'cash-fast': 'hand-coin-outline'} size={28} color={e.modo===1 ? colors.success: colors.error} />
                         <View style={style.textosView} >
                             <Text style={[style.font]}>{e.modo===1 ? 'Recibiste:' : 'Pagaste:'}</Text>
                             <Text style={[style.itemDetalle, style.fontBold]}>{e.detalles}</Text>
@@ -23,7 +24,7 @@ function MovimientosList({items}:Props) {
                     </View>
                     <View style={style.valor}>
                         <Text style={[style.fecha, style.font]}>{helpers.fechadMY(e.created_at)}</Text>
-                        <Text style={[e.modo===1 ? style.ingreso : style.egreso, style.fontBold]}>{helpers.numberFormant(e.valor)}</Text>
+                        <Text style={[e.modo===1 ? style.ingreso : style.egreso, style.fontBold,style.textvalor]}>{helpers.numberFormant(e.valor)}</Text>
                     </View>
                 </View>
             ))
@@ -64,8 +65,11 @@ const style = StyleSheet.create({
     valor:{
 
     },
+    textvalor:{
+        fontSize:12,
+    },
     fecha:{
-
+        fontSize:12
     },
     egreso:{
         color:'red'
@@ -76,7 +80,8 @@ const style = StyleSheet.create({
     itemDetalle:{
         maxWidth: widthScreen*0.55,
         flexWrap:'wrap',
-        fontSize:12
+        fontSize:11,
+        color:colors.semiTransparent
     }
 })
 

@@ -2,11 +2,10 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { colors } from "../../../utils/colors";
 import { HomeStackParamList } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
-import { FloatActionButton, Loading, MovimientosList, Title } from "../../../components";
+import { AddButton, Loading, MovimientosList, Title,BalanceBox } from "../../../components";
 import { useHome } from "./provider";
 import { widthScreen } from "../../../utils/dimensions";
 import { helpers } from "../../../utils/helpers";
-import BalanceBox from "../../../components/box/balance";
 import { Fragment } from "react";
 
 
@@ -15,7 +14,7 @@ import { Fragment } from "react";
 type Props = StackScreenProps<HomeStackParamList, 'mainhome'>
 
 function Screen({ navigation }: Props) {
-    const { movimientos, loading, balance } = useHome()
+    const { movimientos, loading, balance, datos } = useHome()
 
 
 
@@ -23,25 +22,34 @@ function Screen({ navigation }: Props) {
         <View style={style.container2}>
             {
                 loading ? <Loading /> : <Fragment>
-                    <Title>{helpers.mesActualString()}: </Title>
-                    <BalanceBox balance={balance} />
+                   <View style={style.header} >
+                    <Title>{helpers.mesActualString()} </Title>
+                    <AddButton onPress={() => { navigation.push('add') }} />
+                   </View>
+                    <BalanceBox ingresos={datos.ingresos} egresos={datos.egresos} balance={balance} />
                     <ScrollView style={style.scrollview}>
                         <MovimientosList items={movimientos} />
                     </ScrollView>
                 </Fragment>
             }
         </View>
-        <FloatActionButton onPress={() => { navigation.push('add') }} />
+
     </View>);
 }
 const style = StyleSheet.create({
+    header:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal:12
+    },
     container: {
         flex: 1,
         width: widthScreen,
         paddingTop: 24,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.bgcolor
+        backgroundColor: colors.bgcolor,
     },
     container2: {
         marginTop: 24,
@@ -49,6 +57,11 @@ const style = StyleSheet.create({
     },
     scrollview: {
         width: widthScreen,
+        backgroundColor:colors.white,
+        paddingTop:8, 
+        paddingBottom:12,
+        borderTopRightRadius:24,
+        borderTopLeftRadius:24
     }
 })
 

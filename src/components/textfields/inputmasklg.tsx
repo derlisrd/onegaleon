@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { widthScreen } from "../../utils/dimensions";
 import { MaskedTextInput, MaskedTextInputProps } from "react-native-mask-text";
+import { colors } from "../../utils/colors";
 
 interface Props extends MaskedTextInputProps {
   error?: boolean
@@ -61,7 +62,7 @@ const style = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    borderColor:'#000',
+    borderColor:colors.black72,
     borderBottomWidth:1,
   },
   input: {
@@ -73,13 +74,13 @@ const style = StyleSheet.create({
     fontWeight: "bold",
   },
   novalid: {
-    borderColor: "#EC0C74",
+    borderColor: colors.error ,
   },
   normal: {
-    borderColor: "#868688",
+    borderColor:  colors.black72 ,
   },
   error: {
-    color: "#EC0C74",
+    color: colors.error,
     fontSize: 12,
   },
 });

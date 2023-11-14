@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Pressable, Text, StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 type Props = {
   children: ReactNode;
@@ -20,7 +21,7 @@ const style = StyleSheet.create({
     marginVertical:12,
   },
   text: {
-    color: '#000',
+    color: colors.black72,
     fontFamily:'Montserrat_400Regular',
     fontSize:18
   },

@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { widthScreen } from "../../utils/dimensions";
+import { colors } from "../../utils/colors";
 
 interface Props extends TextInputProps {
   error?: boolean
@@ -54,9 +55,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 2,
   },
   inputContainer: {
-    flexDirection: "row",
-    borderColor:'#000',
-    borderBottomWidth:1,
+    flexDirection: "row"
   },
   input: {
     width: widthScreen * 0.8,
@@ -67,13 +66,13 @@ const style = StyleSheet.create({
     fontWeight: "bold",
   },
   novalid: {
-    borderColor: "#EC0C74",
+    borderColor: colors.error,
   },
   normal: {
-    borderColor: "#868688",
+    borderColor: colors.bgcolor,
   },
   error: {
-    color: "#EC0C74",
+    color: colors.error,
     fontSize: 12,
   },
 });

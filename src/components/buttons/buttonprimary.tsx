@@ -15,7 +15,7 @@ function ButtonPrimary({ children, onPress }: { children: ReactNode, onPress: ()
 const style = StyleSheet.create({
 
     button: {
-        backgroundColor: colors.primary,
+        backgroundColor: colors.black72,
         padding: 18,
         minWidth: 280,
         borderRadius: 8,

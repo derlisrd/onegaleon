@@ -17,6 +17,7 @@ function AuthScreens() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        tabBarInactiveTintColor:colors.black72,
         tabBarInactiveBackgroundColor: colors.bgcolor,
         tabBarStyle: { borderTopWidth: 0, backgroundColor: colors.black72 },
         tabBarActiveTintColor: colors.bgcolor,

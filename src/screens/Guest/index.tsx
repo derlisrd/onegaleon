@@ -11,12 +11,12 @@ const {Navigator,Screen} = createStackNavigator<GuestStackParamList>();
 
 
 function GuestScreens() {
-    return ( <>
+    return ( 
         <Navigator initialRouteName={'login'} screenOptions={{ headerShown:false }} >
           <Screen name={'login'} component={LoginScreen} />
           <Screen name={'register'} component={RegisterScreen} />
         </Navigator>
-      </> );
+       );
 }
 
 export default GuestScreens;
