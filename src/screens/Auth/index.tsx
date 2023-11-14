@@ -7,6 +7,8 @@ import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Movimientos from "./movimientos";
 import { colors } from "../../utils/colors";
+import { AddButton2 } from "../../components";
+import AddScreen from "./Add";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -18,9 +20,9 @@ function AuthScreens() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarInactiveTintColor:colors.black72,
-        tabBarInactiveBackgroundColor: colors.bgcolor,
-        tabBarStyle: { borderTopWidth: 0, backgroundColor: colors.black72 },
-        tabBarActiveTintColor: colors.bgcolor,
+        tabBarInactiveBackgroundColor: colors.yellowLight,
+        tabBarStyle: { borderTopWidth: 0, backgroundColor: colors.yellowLight },
+        tabBarActiveTintColor: colors.yellowDark,
       }}
     >
         <Screen name="home" component={HomeScreen} 
@@ -28,6 +30,14 @@ function AuthScreens() {
         
         <Screen name="Wallet" component={Movimientos}
         options={{ tabBarLabel:'Movimientos', tabBarIcon: ({color})=>(<MaterialCommunityIcons name="wallet" color={color} size={26} />) }} />
+
+        <Screen name="Add" component={AddScreen}
+          options={{
+            tabBarActiveBackgroundColor: colors.yellowLight,
+            tabBarLabel:'', 
+            tabBarIcon: ({color,size,focused})=>(<AddButton2 color={color} focused={focused} size={size} />) 
+           }}
+        />
         
         <Screen name="Settings" component={SettingsScreen}
         options={{ tabBarLabel:'Config.', tabBarIcon: ({color})=>(<Feather name="settings" color={color} size={26} />) }} />
