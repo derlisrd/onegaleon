@@ -1,8 +1,17 @@
-import { Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Text, View, StyleSheet, Button } from "react-native";
+import DateTimePicker from 'react-native-ui-datepicker';
+import dayjs from 'dayjs';
+
 
 function Movimientos() {
+    const [value, setValue] = useState(dayjs());
+
     return ( <View style={styles.container}>
-        <Text>Movimientos</Text>
+        <DateTimePicker
+        value={value}
+        onValueChange={(date) => setValue(date)}
+      />
     </View> );
 }
 
