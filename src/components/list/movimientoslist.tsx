@@ -16,7 +16,9 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <Icon name={e.modo===1 ? 'cash-fast': 'hand-coin-outline'} size={28} color={e.modo===1 ? colors.success: colors.error} />
+                        <View style={[style.iconoContainer, e.modo === 1 ? style.iconoGreen : style.iconoRed]}>
+                        <Icon name={e.modo===1 ? 'cash-fast': 'hand-coin-outline'} size={28} color={colors.white} />
+                        </View>
                         <View style={style.textosView} >
                             <Text style={[style.font]}>{e.modo===1 ? 'Recibiste:' : 'Pagaste:'}</Text>
                             <Text style={[style.itemDetalle, style.fontBold]}>{e.detalles}</Text>
@@ -36,16 +38,28 @@ const style = StyleSheet.create({
     container:{
         width: widthScreen*0.99,
         flex:1,
-        paddingHorizontal:18,
+        paddingHorizontal:8,
+        justifyContent:'center'
     },
-
+    iconoRed:{
+        backgroundColor: colors.redPastel,
+    },
+    iconoGreen:{
+        backgroundColor: colors.greenPastel
+    },
+    iconoContainer:{
+        padding:4,
+        borderRadius:8
+    },
     item:{
         paddingVertical:12,
+        paddingHorizontal:4,
+        borderRadius:8,
         justifyContent:'space-between',
         flexDirection:'row',
         flexWrap:'wrap',
-        borderBottomWidth:1,
-        borderColor:'silver'
+        backgroundColor: colors.white,
+        marginVertical:4
     },
     font:{
         fontFamily:'Montserrat_400Regular'

@@ -57,11 +57,11 @@ const style = StyleSheet.create({
     },
     scrollview: {
         width: widthScreen,
-        backgroundColor:colors.white,
+        backgroundColor:colors.bgcolor,
         paddingTop:8, 
         paddingBottom:12,
-        borderTopRightRadius:24,
-        borderTopLeftRadius:24
+        borderTopRightRadius:8,
+        borderTopLeftRadius:8
     }
 })
 

@@ -12,5 +12,6 @@ export const colors = {
     greenPastel:'#8ae287',
     yellowLight:'#FFF4B1',
     yellow:'#FAD707',
-    yellowDark:'#D1BE47'
+    yellowDark:'#D1BE47',
+    yellowExtraLight:'#fcf0cf'
 }
