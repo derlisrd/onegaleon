@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, ScrollView } from "react-native";
 import { ButtonPrimary, Input, Title } from "../../../components";
 import { useState } from "react";
 import { GuestStackParamList } from "..";
@@ -10,17 +10,19 @@ import SubTitle from "../../../components/text/subtitle";
 import { helpers } from "../../../utils/helpers";
 import { APICALLER } from "../../../services/api";
 import { colors } from "../../../utils/colors";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 type guestScreenNavigationType = StackScreenProps<GuestStackParamList,'register'>
 
 function RegisterScreen({navigation}: guestScreenNavigationType) {
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({code:0,msg:''})
+    const [check,setCheck] = useState(false)
     const initialForm = {
         name:'',
         email:'',
         password:'',
-        password_confirm:''
+        password_confirm:'',
     }
     const [form,setForm] = useState(initialForm)
     const change = (t:string,n:string)=>{
@@ -42,6 +44,10 @@ function RegisterScreen({navigation}: guestScreenNavigationType) {
         }
         if(form.password!==form.password_confirm){
             setError({code:5,msg:'Las contraseñas deben coincidir'})
+            return
+        }
+        if(!check){
+            setError({code:6,msg:'Debe aceptar los términos'})
             return
         }
         setError({code:0, msg:''})
@@ -80,6 +86,16 @@ function RegisterScreen({navigation}: guestScreenNavigationType) {
                 <Input placeholder="user@example.com" error={error.code===2} errorMessage={error.code===2 ? error.msg : ''} onChangeText={(t)=>{change(t,'email')}} label="E-mail" inputMode="email" />
                 <Input placeholder="Contraseña" label="Contraseña" error={error.code===3 || error.code===5} errorMessage={error.code===3 ? error.msg : ''} onChangeText={(t)=>{change(t,'password')}} secureTextEntry />
                 <Input placeholder="Repetir contraseña" error={ error.code===5} errorMessage={error.code===5 ? error.msg : ''} label="Repetir contraseña" onChangeText={(t)=>{change(t,'password_confirm')}} secureTextEntry />
+                <BouncyCheckbox
+                    size={24}
+                    fillColor={colors.black72}
+                    unfillColor="#FFFFFF"
+                    text="Acepto los términos y políticas"
+                    iconStyle={{ borderColor: colors.black72 }}
+                    innerIconStyle={{ borderWidth: 2 }}
+                    textStyle={{ fontFamily: "Montserrat_400Regular" }}
+                    onPress={(isChecked: boolean) => { setCheck(isChecked)}}
+                    />
             </View>
             <View>
                 <ButtonPrimary onPress={validarEnviar}>registrarme</ButtonPrimary>
@@ -87,7 +103,7 @@ function RegisterScreen({navigation}: guestScreenNavigationType) {
             <View>
                 <TextLink onPress={()=>{navigation.pop()}}>Ya tengo cuenta, loguearme </TextLink>
             </View>
-    </View>
+        </View>
     );
 }
 

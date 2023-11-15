@@ -54,7 +54,7 @@ const style = StyleSheet.create({
         marginVertical:2,
     },
     novalid:{
-        borderColor:colors.error,
+        borderColor:colors.redPastel,
     },
     normal:{
         borderColor: colors.primary,
@@ -76,7 +76,7 @@ const style = StyleSheet.create({
         color: colors.primary
     },
     error:{
-        color:colors.error,
+        color:colors.redPastel,
         fontSize:12
     }
 })

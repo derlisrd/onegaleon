@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
-import { ButtonPrimary, Input, InputPass, Title } from "../../../components";
+import { ButtonPrimary, ButtonSecondary, Input, InputPass, Title } from "../../../components";
 import type { StackScreenProps } from '@react-navigation/stack';
 import { GuestStackParamList } from "..";
 import SubTitle from "../../../components/text/subtitle";
@@ -64,14 +64,18 @@ function LoginScreen({navigation}: guestScreenNavigationType) {
             <View>
                 <ButtonPrimary onPress={tryLogin}>ingresar</ButtonPrimary>
             </View>
-            <View>
-                <TextLink onPress={goRegister}>No tienes una cuenta? <Text style={style.negrita}>Regístrate aquí.</Text> </TextLink>
+            <View style={style.registerContainer}>
+                <Text>No tienes una cuenta?</Text>
+                <ButtonSecondary onPress={goRegister}>Registrate</ButtonSecondary>
             </View>
     </View>
     );
 }
 
 const style = StyleSheet.create({
+    registerContainer:{
+        justifyContent:'center', alignItems:'center', marginTop:8
+    },
     negrita:{
         fontWeight:'bold'
     },
