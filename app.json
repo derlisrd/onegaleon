@@ -2,7 +2,7 @@
   "expo": {
     "name": "onegaleon",
     "slug": "onegaleon",
-    "version": "1.0.0",
+    "version": "1.2.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FAD707"
       },
-      "versionCode": 2,
+      "versionCode": 25,
       "package": "com.derlisrd.onegaleon"
     },
     "web": {
