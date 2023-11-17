@@ -20,8 +20,8 @@ type guestScreenNavigationType = StackScreenProps<GuestStackParamList,'login'>
 function LoginScreen({navigation}: guestScreenNavigationType) {
     const {setLogin} = useAuthProvider()
     const [showPass,setShowPass] = useState(true)
-    const [email,setEmail] = useState('demo@demo.com')
-    const [pass,setPass] = useState('demo12345')
+    const [email,setEmail] = useState('')
+    const [pass,setPass] = useState('')
     const [error,setError] = useState({code:0,msg:''})
     const [loading,setLoading] = useState(false)
     const goRegister = ()=>{
