@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Screen from "./screen";
-import Add from "./add";
+//import Add from "./add";
 import HomeProvider from "./provider";
 
 export type HomeStackParamList = {
