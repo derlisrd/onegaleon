@@ -56,7 +56,7 @@ function LoginScreen({navigation}: guestScreenNavigationType) {
                 loading && <LoadingTransparent message="Cargando..." />
             }
             <Title>Hola</Title>
-            <SubTitle>Bienvenido devuelta. Si no tienes una cuenta registrate un momento.</SubTitle>
+            <SubTitle>Bienvenido a One Galeon. Si no tienes una cuenta registrate un momento.</SubTitle>
             <View style={style.inputs}>
                 <Input placeholder="Email o usuario" error={error.code===1} errorMessage={error.code===1 ? error.msg : ''} value={email} onChangeText={setEmail} label="Ingresa email o usuario:" />
                 <InputPass onPress={()=>{setShowPass(!showPass)}} secureTextEntry={showPass} placeholder="Contraseña" error={error.code===2} errorMessage={error.code===2 ? error.msg : ''} autoCapitalize="none" label="Ingresa tu contraseña" value={pass} onChangeText={setPass}  />

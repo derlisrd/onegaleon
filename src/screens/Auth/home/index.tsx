@@ -16,11 +16,6 @@ function Home() {
     <HomeProvider>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="mainhome" component={Screen} />
-        <Stack.Screen
-          name="add"
-          component={Add}
-          options={{ presentation: "modal" }}
-        />
       </Stack.Navigator>
     </HomeProvider>
   );

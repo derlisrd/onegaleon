@@ -1,5 +1,5 @@
 import {  StyleSheet, SafeAreaView, Alert, View} from 'react-native'
-import { ButtonBack, ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2 } from '../../../components';
+import { ButtonBack, ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2, Loading } from '../../../components';
 import { CONSTANTES } from '../../../utils/constantes';
 import { useState } from 'react';
 import { colors } from '../../../utils/colors';
@@ -10,7 +10,6 @@ import { useAuthProvider } from '../../../providers/authprovider';
 import { postresponse } from '../../../models/post';
 import { useHome } from './provider';
 import { widthScreen } from '../../../utils/dimensions';
-import Loading from '../../../components/loadings/loading';
 import { objetosMovimientos } from '../../../models/get';
 import { movimientosModelInsertResponse } from '../../../models/movimientos';
 

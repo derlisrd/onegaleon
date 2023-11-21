@@ -52,7 +52,7 @@ function HomeProvider({children}: Props) {
         const primerDiaMes = moment().startOf('month').format('YYYY-MM-DD');
         const ultimoDiaMes = moment().endOf('month').format('YYYY-MM-DD');
         
-        
+        setLoading(true)
         const res : movimientosResponse = await APICALLER.get({url:`/movimientos?fecha_inicio=${primerDiaMes}&fecha_fin=${ultimoDiaMes}`,token:userData.token})
         if(res.success){
             let balanceLocal = 0

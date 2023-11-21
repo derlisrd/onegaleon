@@ -70,7 +70,7 @@ const style = StyleSheet.create({
   },
   font: {
     fontFamily: "Montserrat_400Regular",
-    fontSize: 48,
+    fontSize: 32,
     fontWeight: "bold",
   },
   novalid: {

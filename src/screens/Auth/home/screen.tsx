@@ -2,7 +2,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { colors } from "../../../utils/colors";
 import { HomeStackParamList } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
-import { AddButton, Loading, MovimientosList, Title,BalanceBox } from "../../../components";
+import {  Loading, MovimientosList, Title,BalanceBox, RefreshButton } from "../../../components";
 import { useHome } from "./provider";
 import { widthScreen } from "../../../utils/dimensions";
 import { helpers } from "../../../utils/helpers";
@@ -14,7 +14,7 @@ import { Fragment } from "react";
 type Props = StackScreenProps<HomeStackParamList, 'mainhome'>
 
 function Screen({ navigation }: Props) {
-    const { movimientos, loading, balance, datos } = useHome()
+    const { movimientos, loading, balance, datos, getMovimientos } = useHome()
 
 
 
@@ -24,7 +24,7 @@ function Screen({ navigation }: Props) {
                 loading ? <Loading /> : <Fragment>
                    <View style={style.header} >
                     <Title>{helpers.mesActualString()} </Title>
-                    <AddButton onPress={() => { navigation.push('add') }} />
+                    <RefreshButton onPress={getMovimientos} />
                    </View>
                     <BalanceBox ingresos={datos.ingresos} egresos={datos.egresos} balance={balance} />
                     <ScrollView style={style.scrollview}>

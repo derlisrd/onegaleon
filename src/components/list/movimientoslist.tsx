@@ -39,7 +39,8 @@ const style = StyleSheet.create({
         width: widthScreen*0.99,
         flex:1,
         paddingHorizontal:8,
-        justifyContent:'center'
+        justifyContent:'center',
+        paddingBottom:24
     },
     iconoRed:{
         backgroundColor: colors.redPastel,

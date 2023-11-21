@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import {Pressable,View,Text,StyleSheet} from 'react-native';
+import { colors } from '../../utils/colors';
 
 
 
@@ -14,18 +15,21 @@ function ButtonSecondary ({children, onPress}: {children: ReactNode , onPress:  
 const style = StyleSheet.create({
 
     button:{
-        backgroundColor:'#fff',
-        padding:18,
+        backgroundColor:colors.yellowExtraLight,
+        padding:15,
         minWidth:280,
         borderRadius:8,
         marginVertical:8,
-        borderColor:'#ccc',
+        borderColor:colors.yellowDark,
         borderWidth:1
     },
     buttontext:{
-        color:'#000',
-        textAlign:'center',
-        textTransform:'uppercase'
+        color: colors.black72,
+        fontSize:16,
+        fontWeight:'bold',
+        fontFamily:'Montserrat_700Bold',
+        textAlign: 'center',
+        textTransform: 'uppercase'
     }
 })
 

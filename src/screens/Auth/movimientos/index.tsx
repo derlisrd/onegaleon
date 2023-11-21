@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import DateTimePicker from 'react-native-ui-datepicker';
-import dayjs from 'dayjs';
+import DatePicker from 'react-native-modern-datepicker';
+import { Title } from "../../../components";
 
 
 function Movimientos() {
-    const [value, setValue] = useState(dayjs());
+    const [date, setDate] = useState('');
 
     return ( <View style={styles.container}>
-        <DateTimePicker
-        value={value}
-        onValueChange={(date) => setValue(date)}
-      />
+        <View>
+            <Title>Movimientos</Title>
+        </View>
+        <DatePicker
+      mode="monthYear"
+      selectorStartingYear={2020}
+      onMonthYearChange={selectedDate => setDate(selectedDate)}
+    />
     </View> );
 }
 

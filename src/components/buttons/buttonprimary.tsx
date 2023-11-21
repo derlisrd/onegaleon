@@ -15,14 +15,24 @@ function ButtonPrimary({ children, onPress }: { children: ReactNode, onPress: ()
 const style = StyleSheet.create({
 
     button: {
-        backgroundColor: colors.black72,
-        padding: 18,
+        backgroundColor: colors.yellow,
+        padding: 15,
         minWidth: 280,
         borderRadius: 8,
         marginVertical: 8,
+        shadowColor: colors.yellowExtraLight,
+        elevation: 5,
+        shadowOffset: {
+        width: 5,
+        height: 4,
+      },
+      shadowOpacity: 1
     },
     buttontext: {
-        color: '#fff',
+        color: colors.black72,
+        fontSize:16,
+        fontWeight:'bold',
+        fontFamily:'Montserrat_700Bold',
         textAlign: 'center',
         textTransform: 'uppercase'
     },
