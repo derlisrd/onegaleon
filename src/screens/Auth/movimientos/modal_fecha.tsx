@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
 import { ButtonPrimary, Title } from "../../../components";
 import { StackMovimientos } from ".";
