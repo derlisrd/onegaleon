@@ -1,22 +1,26 @@
 
 import { useState } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
-import { Title } from "../../../components";
+import { ButtonPrimary, Title } from "../../../components";
+import { StackMovimientos } from ".";
+import { StackScreenProps } from "@react-navigation/stack";
 
+type Props = StackScreenProps<StackMovimientos,'modalfecha'>
 
-function ModalFecha() {
+function ModalFecha({navigation}:Props) {
     const [date, setDate] = useState('');
 
     return ( <View style={styles.container}>
         <View>
-            <Title>Movimientos</Title>
+            <Title>Selecciona fecha</Title>
         </View>
         <DatePicker
       mode="monthYear"
       selectorStartingYear={2020}
       onMonthYearChange={selectedDate => setDate(selectedDate)}
     />
+    <ButtonPrimary onPress={() => navigation.goBack()}>Cerrar</ButtonPrimary>
     </View> );
 }
 
