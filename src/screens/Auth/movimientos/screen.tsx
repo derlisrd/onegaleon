@@ -1,15 +1,15 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StackMovimientos } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
-import { View,Text, StyleSheet } from "react-native";
-import { widthScreen } from "../../../utils/dimensions";
-import { ButtonPrimary, ButtonSm, SubTitle, Title2 } from "../../../components";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { heightScreen, widthScreen } from "../../../utils/dimensions";
+import {  ButtonSm, Loading, MovimientosList, SubTitle, Title2 } from "../../../components";
 import { useMovimientos } from "./provider";
 
 type Props = StackScreenProps<StackMovimientos,'main'>
 
 function Screen({navigation}:Props) {
-    const {fecha} = useMovimientos()
+    const {fecha,loading,movimientos} = useMovimientos()
     return (<SafeAreaView>
         <View style={styles.titulo}>
             <Title2>Movimientos</Title2>
@@ -19,7 +19,11 @@ function Screen({navigation}:Props) {
             </View>
         </View>
         <View style={styles.movimientos}>
-
+            {
+                loading ? <Loading /> : <ScrollView style={styles.scrollview}>
+                <MovimientosList items={movimientos} />
+            </ScrollView>
+            }
         </View>
 
     </SafeAreaView>);
@@ -35,7 +39,12 @@ const styles = StyleSheet.create({
         paddingHorizontal:32
     },
     movimientos:{
-        flex:1
+        height:'100%',
+        paddingBottom:12
+    },
+    scrollview: {
+        width: widthScreen,
+        maxHeight: heightScreen *0.68
     }
 })
 

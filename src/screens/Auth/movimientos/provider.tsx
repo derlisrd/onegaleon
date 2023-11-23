@@ -41,7 +41,7 @@ function MovimientosProvider({children}:{children : ReactNode}) {
         if(res.success){
             setMovimientos(res.results)
         }
-        console.log(res);
+        //console.log(res);
         setLoading(false)
     },[fecha])
 
