@@ -10,6 +10,7 @@ function SubTitle({children}: {children: ReactNode}) {
 const style = StyleSheet.create({
     title:{
         fontSize:16,
+        marginHorizontal:8,
         maxWidth: widthScreen*0.9,
         marginVertical:8,
         color: colors.black72,
