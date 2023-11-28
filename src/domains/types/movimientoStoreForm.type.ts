@@ -4,5 +4,5 @@ export type movimientoStoreForm = {
     modo: string
     valor: string
     created_at: string
-    synch: boolean
+    sync?: boolean
 }

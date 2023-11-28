@@ -4,9 +4,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { getMovimientos } from "../../models/get";
 import { widthScreen } from "../../utils/dimensions";
 import { colors } from "../../utils/colors";
+import { movimientoStoreForm } from "../../domains/types/movimientoStoreForm.type";
 
 interface Props {
-    items: getMovimientos
+    items: getMovimientos | movimientoStoreForm[]
 }
 
 
@@ -16,17 +17,19 @@ function MovimientosList({items}:Props) {
             items.map((e,i)=>(
                 <View key={i} style={style.item}>
                     <View style={style.detalles}>
-                        <View style={[style.iconoContainer, e.modo === 1 ? style.iconoGreen : style.iconoRed]}>
-                        <Icon name={e.modo===1 ? 'cash-fast': 'hand-coin-outline'} size={28} color={colors.white} />
+                        <View style={[style.iconoContainer, (e.modo===1 || e.modo==='1')  ? style.iconoGreen : style.iconoRed]}>
+                        <Icon name={(e.modo===1 || e.modo==='1') ? 'cash-fast': 'hand-coin-outline'} size={28} color={colors.white} />
                         </View>
                         <View style={style.textosView} >
-                            <Text style={[style.font]}>{e.modo===1 ? 'Recibiste:' : 'Pagaste:'}</Text>
+                            <Text style={[style.font]}>{(e.modo===1 || e.modo==='1') ? 'Recibiste:' : 'Pagaste:'}</Text>
                             <Text style={[style.itemDetalle, style.fontBold]}>{e.detalles}</Text>
                         </View>
                     </View>
                     <View style={style.valor}>
                         <Text style={[style.fecha, style.font]}>{helpers.fechadMY(e.created_at)}</Text>
-                        <Text style={[e.modo===1 ? style.ingreso : style.egreso, style.fontBold,style.textvalor]}>{helpers.numberFormant(e.valor)}</Text>
+                        <Text style={[(e.modo===1 || e.modo==='1') ? style.ingreso : style.egreso, style.fontBold,style.textvalor]}>{
+                            helpers.numberFormant(e.valor)}
+                        </Text>
                     </View>
                 </View>
             ))

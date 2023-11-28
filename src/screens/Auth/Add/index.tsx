@@ -1,4 +1,4 @@
-import {  StyleSheet, SafeAreaView, Alert, View} from 'react-native'
+import {  StyleSheet, SafeAreaView, Alert, View, Keyboard} from 'react-native'
 import { ButtonBack, ButtonPrimary, ButtonSecondary, Input, InputMaskLg, RadioGroup, Title2, Loading } from '../../../components';
 import { CONSTANTES } from '../../../utils/constantes';
 import { colors } from '../../../utils/colors';
@@ -8,16 +8,18 @@ import { APICALLER } from '../../../services/api';
 import { postresponse } from '../../../models/post';
 import { useAuthProvider } from '../../../providers/authprovider';
 import moment from 'moment';
+import { useMovimientoStore } from '../../../providers/movimientosstore';
 
 function AddScreen() {
-    const {userData,setearMovimientoStore} = useAuthProvider()
+    const {userData} = useAuthProvider()
+    const {setearMovimientosStore} = useMovimientoStore()
     const initialForm = {
       tipo:'1',
       detalles:'',
       modo:'0',
       valor:'',
       created_at:'',
-      synch:false
+      sync:false
   }
     const [loading,setLoading] = useState(false)
     const [form,setForm] = useState(initialForm)
@@ -25,14 +27,17 @@ function AddScreen() {
       setForm({ ...form, [name]: (val) });
     }
     const agregar = async ()=>{
-      setLoading(true)
+      
       let f = {...form}
       const ahora = moment()
       f.created_at = ahora.format('YYYY-MM-DD HH:mm:ss');
       
-      setearMovimientoStore(f)
-
-      
+      setLoading(true)
+      setearMovimientosStore(f)
+      Alert.alert("Movimiento Agregado","Se ha agregado el movimiento correctamente.")
+      setForm(initialForm)
+      Keyboard.dismiss()
+      setLoading(false)
       /* const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
       if(res.success){
          //const respuestaModelada : objetosMovimientos = movimientosModelInsertResponse(res.results)
@@ -40,12 +45,14 @@ function AddScreen() {
         setForm(initialForm)
       }else{
         Alert.alert("Error","Ha ocurrido un error de conexión.")
+        return
       } */
-      setLoading(false)
       
     }
+
     const cancelar = ()=>{
       setForm(initialForm)
+      Keyboard.dismiss()
     }
     return (<SafeAreaView style={loading ? styles.center : styles.container }>
         {

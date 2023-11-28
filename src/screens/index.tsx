@@ -4,6 +4,7 @@ import AuthScreens from "./Auth";
 import GuestScreens from "./Guest";
 import SplashScreen from "./Splash";
 import { StatusBar } from "expo-status-bar";
+import MovimientosStore from "../providers/movimientosstore";
 
 function MainScreens() {
     const {isAuth,checkingAuthLoading} = useAuthProvider()
@@ -15,7 +16,7 @@ function MainScreens() {
 
     return ( <Fragment>
     {
-        isAuth ? <AuthScreens /> : <GuestScreens />
+        isAuth ? <MovimientosStore><AuthScreens /></MovimientosStore> : <GuestScreens />
     }
     <StatusBar style='dark'  />
     </Fragment> );

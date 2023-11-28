@@ -5,7 +5,12 @@ export const helpers = {
             return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
           
     },
-    numberFormant : (n : number)=> (n).toLocaleString("de-DE"),
+    numberFormant : (n : number | string)=> {
+      if(typeof n === 'number'){
+        return (n).toLocaleString("de-DE")
+      }
+      return ( parseFloat(n)).toLocaleString("de-DE") 
+    },
     fechadMY: (fecha: string)=>{
       // Convertimos la fecha a un objeto Date
         const fechaObjeto = new Date(fecha);

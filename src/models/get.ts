@@ -1,12 +1,13 @@
 
 
 export type objetosMovimientos = {
-    id:number
+    id:number 
     detalles: string
     valor: number
     modo:number
     tipo: number
-    created_at: string
+    created_at: string,
+    sync?: boolean
 }
 
 export type getMovimientos = Array<objetosMovimientos>;

@@ -7,6 +7,7 @@ import { useHome } from "./provider";
 import { widthScreen } from "../../../utils/dimensions";
 import { helpers } from "../../../utils/helpers";
 import { Fragment } from "react";
+import { useMovimientoStore } from "../../../providers/movimientosstore";
 
 
 
@@ -14,7 +15,8 @@ import { Fragment } from "react";
 type Props = StackScreenProps<HomeStackParamList, 'mainhome'>
 
 function Screen({ navigation }: Props) {
-    const { movimientos, loading, balance, datos, getMovimientos } = useHome()
+    const { loading, balance, datos, getMovimientos } = useHome()
+    const {movimientosStore} = useMovimientoStore()
 
 
 
@@ -28,7 +30,7 @@ function Screen({ navigation }: Props) {
                    </View>
                     <BalanceBox ingresos={datos.ingresos} egresos={datos.egresos} balance={balance} />
                     <ScrollView style={style.scrollview}>
-                        <MovimientosList items={movimientos} />
+                        <MovimientosList items={movimientosStore} />
                     </ScrollView>
                 </Fragment>
             }
