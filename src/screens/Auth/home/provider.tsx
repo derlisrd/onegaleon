@@ -94,12 +94,18 @@ function HomeProvider({children}: Props) {
         setMovimientos(movimientosantiguos)
         setLoading(false) 
     }
+
+    const getLocalMovimientos = useCallback(()=>{
+        setLoading(true)
+        
+        setLoading(false)
+    },[])
     
     useEffect(() => {
         const ca = new AbortController(); let isActive = true;
-        if (isActive) {getMovimientos();}
+        if (isActive) {getLocalMovimientos();}
         return () => {isActive = false; ca.abort();};
-      }, [getMovimientos]);
+      }, [getLocalMovimientos]);
 
 
     const values = {movimientos,loading,getMovimientos,pushMovimiento,balance,datos,setDatos}
