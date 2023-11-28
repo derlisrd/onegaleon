@@ -7,14 +7,17 @@ import { useState } from 'react';
 import { APICALLER } from '../../../services/api';
 import { postresponse } from '../../../models/post';
 import { useAuthProvider } from '../../../providers/authprovider';
+import moment from 'moment';
 
 function AddScreen() {
-    const {userData} = useAuthProvider()
+    const {userData,setearMovimientoStore} = useAuthProvider()
     const initialForm = {
       tipo:'1',
       detalles:'',
       modo:'0',
-      valor:''
+      valor:'',
+      created_at:'',
+      synch:false
   }
     const [loading,setLoading] = useState(false)
     const [form,setForm] = useState(initialForm)
@@ -23,14 +26,21 @@ function AddScreen() {
     }
     const agregar = async ()=>{
       setLoading(true)
-      const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
+      let f = {...form}
+      const ahora = moment()
+      f.created_at = ahora.format('YYYY-MM-DD HH:mm:ss');
+      
+      setearMovimientoStore(f)
+
+      
+      /* const res : postresponse = await APICALLER.post({url:'/movimientos',token:userData.token,data: form})
       if(res.success){
          //const respuestaModelada : objetosMovimientos = movimientosModelInsertResponse(res.results)
          Alert.alert('Ok','Movimiento agregado')
         setForm(initialForm)
       }else{
         Alert.alert("Error","Ha ocurrido un error de conexión.")
-      }
+      } */
       setLoading(false)
       
     }
