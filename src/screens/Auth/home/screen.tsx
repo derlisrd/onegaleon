@@ -16,23 +16,23 @@ import { Alert } from "react-native";
 type Props = StackScreenProps<HomeStackParamList, 'mainhome'>
 
 function Screen({ navigation }: Props) {
-    const { loading, balance, datos, getMovimientos } = useHome()
-    const {movimientosStore,sincronizar} = useMovimientoStore()
+
+    const {movimientosStore,sincronizar,flujos,checkingMovimientos} = useMovimientoStore()
 
     const sync = ()=>{
-        Alert.alert('Desea sincronizar?','Sincronizar datos con la nube?',[{text:'No, cancelar'},{text:'Si, sincroniza',onPress:sincronizar}])
+        Alert.alert('Desea sincronizar?','Sincronizar datos en nube?',[{text:'No, cancelar'},{text:'Si, sincroniza',onPress:sincronizar}])
     }
 
 
     return (<View style={style.container}>
         <View style={style.container2}>
             {
-                loading ? <Loading /> : <Fragment>
+                checkingMovimientos ? <Loading /> : <Fragment>
                    <View style={style.header} >
                     <Title>{helpers.mesActualString()} </Title>
                     <RefreshButton onPress={sync} />
                    </View>
-                    <BalanceBox ingresos={datos.ingresos} egresos={datos.egresos} balance={balance} />
+                    <BalanceBox ingresos={flujos.entrada} egresos={flujos.salida} balance={flujos.balance} />
                     <ScrollView style={style.scrollview}>
                         <MovimientosList items={movimientosStore} />
                     </ScrollView>

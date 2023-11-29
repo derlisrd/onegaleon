@@ -3,6 +3,8 @@ import { createContext,useContext, useEffect,useCallback,useState, ReactNode,Set
 import { Storage } from "../utils/storage";
 import { movimientoStoreForm } from "../domains/types/movimientoStoreForm.type";
 import { flujosType } from "../domains/types/flujos.type";
+import { APICALLER } from "../services/api";
+import { useAuthProvider } from "./authprovider";
 
 
 
@@ -31,6 +33,7 @@ interface Props {
 }
 
 function MovimientosStore({children}:Props) {
+    const {userData} = useAuthProvider()
     const [movimientosStore,setMovimientosStore] = useState <movimientoStoreForm[]>([])
     const [flujos,setFlujos] = useState({entrada:0,salida:0, balance:0})
     const [checkingMovimientos,setCheckingMovimientos] = useState(true)
@@ -39,14 +42,38 @@ function MovimientosStore({children}:Props) {
         let nuevo = [...movimientosStore]
         nuevo.push(mov)
         setMovimientosStore(nuevo);
+        let  entrada= 0, balance:number = 0, salida : number = 0, analizarValor : number = 0;
+        nuevo.forEach((el : movimientoStoreForm) => {
+            analizarValor = parseFloat(el.valor) 
+            if(el.modo === '0'){
+                salida += analizarValor
+            }else{
+                entrada += analizarValor
+            }
+        });
+        balance = entrada - salida ;
+        setFlujos({salida,entrada,balance})
         await Storage.set({key:'movimientos', value: nuevo})
         
     }
 
     const sincronizar = async()=>{
-        
-        const objetosSyncFalse = movimientosStore.filter(objeto => objeto.sync === false);
-        console.log(objetosSyncFalse);
+        setCheckingMovimientos(true)
+        let movi = [...movimientosStore]
+        const objetosSyncFalse = movi.filter(objeto => objeto.sync === false);
+        let promesas : any[] = [], data = {}
+        objetosSyncFalse.forEach((elm : movimientoStoreForm)=>{
+            data = {detalles: elm.detalles, category_id: elm.category_id, tipo: elm.tipo, modo: elm.modo, created_at: elm.created_at,valor: elm.valor}
+            promesas.push(APICALLER.post({url:'/movimientos',data,token:userData.token}))
+        })
+        await Promise.all(promesas) 
+        const objetosActualizados = movi.map((elm:movimientoStoreForm) =>
+            elm.sync === false ? { ...elm, sync: true } : elm
+        )
+       console.log(objetosActualizados);
+       
+
+        setCheckingMovimientos(false)
 
     }
 
@@ -55,13 +82,17 @@ function MovimientosStore({children}:Props) {
         const store =  await Storage.get({key:'movimientos'});
         if(store){
             setMovimientosStore(store)
-            let  entra : number, balan:number, sali : number = 0 
-            store.array.forEach((el : movimientoStoreForm) => {
-                let analizarValor = parseFloat(el.valor) 
+            let  entrada= 0, balance:number = 0, salida : number = 0, analizarValor : number = 0;
+            store.forEach((el : movimientoStoreForm) => {
+                analizarValor = parseFloat(el.valor) 
                 if(el.modo === '0'){
-                    entra += analizarValor
+                    salida += analizarValor
+                }else{
+                    entrada += analizarValor
                 }
             });
+            balance = entrada - salida ;
+            setFlujos({salida,entrada,balance})
         }
         setCheckingMovimientos(false)
     },[Storage])
