@@ -9,6 +9,7 @@ import { postresponse } from '../../../models/post';
 import { useAuthProvider } from '../../../providers/authprovider';
 import moment from 'moment';
 import { useMovimientoStore } from '../../../providers/movimientosstore';
+import { movimientoStoreForm } from '../../../domains/types/movimientoStoreForm.type';
 
 function AddScreen() {
     const {userData} = useAuthProvider()
@@ -22,7 +23,7 @@ function AddScreen() {
       sync:false
   }
     const [loading,setLoading] = useState(false)
-    const [form,setForm] = useState(initialForm)
+    const [form,setForm] = useState<movimientoStoreForm>(initialForm)
     const handleChange = (val: string,name: string)=>{
       setForm({ ...form, [name]: (val) });
     }
@@ -30,6 +31,9 @@ function AddScreen() {
       
       let f = {...form}
       const ahora = moment()
+      /* const nuevoValor =  typeof f.valor === 'string' ? parseFloat(f.valor) : f.valor;
+      f.valor = nuevoValor */
+
       f.created_at = ahora.format('YYYY-MM-DD HH:mm:ss');
       
       setLoading(true)

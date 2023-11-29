@@ -8,6 +8,7 @@ import { widthScreen } from "../../../utils/dimensions";
 import { helpers } from "../../../utils/helpers";
 import { Fragment } from "react";
 import { useMovimientoStore } from "../../../providers/movimientosstore";
+import { Alert } from "react-native";
 
 
 
@@ -16,8 +17,11 @@ type Props = StackScreenProps<HomeStackParamList, 'mainhome'>
 
 function Screen({ navigation }: Props) {
     const { loading, balance, datos, getMovimientos } = useHome()
-    const {movimientosStore} = useMovimientoStore()
+    const {movimientosStore,sincronizar} = useMovimientoStore()
 
+    const sync = ()=>{
+        Alert.alert('Desea sincronizar?','Sincronizar datos con la nube?',[{text:'No, cancelar'},{text:'Si, sincroniza',onPress:sincronizar}])
+    }
 
 
     return (<View style={style.container}>
@@ -26,7 +30,7 @@ function Screen({ navigation }: Props) {
                 loading ? <Loading /> : <Fragment>
                    <View style={style.header} >
                     <Title>{helpers.mesActualString()} </Title>
-                    <RefreshButton onPress={getMovimientos} />
+                    <RefreshButton onPress={sync} />
                    </View>
                     <BalanceBox ingresos={datos.ingresos} egresos={datos.egresos} balance={balance} />
                     <ScrollView style={style.scrollview}>

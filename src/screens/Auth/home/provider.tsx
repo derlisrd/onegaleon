@@ -95,6 +95,8 @@ function HomeProvider({children}: Props) {
         setLoading(false) 
     }
 
+    
+
     const getLocalMovimientos = useCallback(()=>{
         setLoading(true)
         
