@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './Login';
 import RegisterScreen from './Register';
+import { DatePicker } from '../../components';
 
 export type GuestStackParamList = {
     login:undefined,

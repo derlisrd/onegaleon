@@ -7,6 +7,7 @@ import { StackMovimientos } from ".";
 import { StackScreenProps } from "@react-navigation/stack";
 import moment from "moment";
 import { useMovimientos } from "./provider";
+import { colors } from "../../../utils/colors";
 
 type Props = StackScreenProps<StackMovimientos,'modalfecha'>
 
@@ -30,13 +31,13 @@ function ModalFecha({navigation}:Props) {
             selectorStartingYear={2020}
             onMonthYearChange={seleccionarFecha}
             options={{
-                backgroundColor: '#090C08',
-                textHeaderColor: '#FFA25B',
-                textDefaultColor: '#F6E7C1',
+                backgroundColor: colors.bgcolor,
+                textHeaderColor: colors.primary,
+                textDefaultColor: colors.black72,
                 selectedTextColor: '#fff',
-                mainColor: '#F4722B',
-                textSecondaryColor: '#D6C7A1',
-                borderColor: 'rgba(122, 146, 165, 0.1)',
+                mainColor: colors.yellow,
+                textSecondaryColor: colors.error,
+                borderColor: colors.greenPastel,
               }}
               style={styles.calendario}
         />

@@ -9,9 +9,9 @@ import moment from "moment";
 interface HomeContextProps {
     movimientos: getMovimientos
     loading: boolean,
-    balance:number,
     getMovimientos:()=>void
     pushMovimiento: (newmovimiento: objetosMovimientos)=>void
+    balance:number,
     datos:{
         egresos:number,
         ingresos:number
@@ -22,10 +22,10 @@ interface HomeContextProps {
 
 const HomeContext = createContext<HomeContextProps>({
     movimientos: [],
-    balance:0,
     loading: true,
     getMovimientos: async()=>{},
     pushMovimiento: ()=>{},
+    balance:0,
     datos:{
         egresos:0,
         ingresos:0

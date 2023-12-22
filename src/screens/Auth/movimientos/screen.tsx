@@ -9,11 +9,18 @@ import { useMovimientos } from "./provider";
 type Props = StackScreenProps<StackMovimientos,'main'>
 
 function Screen({navigation}:Props) {
-    const {fecha,loading,movimientos} = useMovimientos()
+    const {fecha,loading,movimientos,balance,datos,isActive} = useMovimientos()
     return (<SafeAreaView>
         <View style={styles.titulo}>
             <Title2>Movimientos</Title2>
-            <SubTitle>Rango de fecha: {fecha.inicio} {fecha.fin}</SubTitle>
+            {
+                isActive && <>
+                <SubTitle>Rango de fecha: {fecha.inicio} {fecha.fin}</SubTitle>
+                <SubTitle>Balance: {balance}</SubTitle>
+                <SubTitle>Ingresos: {datos.ingresos}</SubTitle>
+                <SubTitle>Egresos: {datos.egresos}</SubTitle>
+                </>
+            }
             <View style={styles.boton}>
                 <ButtonSm onPress={() => navigation.navigate('modalfecha')}>Seleccionar fecha</ButtonSm>
             </View>
