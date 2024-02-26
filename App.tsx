@@ -1,28 +1,35 @@
 import 'react-native-gesture-handler';
-import { useFonts, Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import { NavigationContainer } from '@react-navigation/native';
+import * as SplashScreen from 'expo-splash-screen';
+import {useFonts,Montserrat_100Thin,Montserrat_400Regular,Montserrat_700Bold} from '@expo-google-fonts/montserrat';
+import { useCallback,useEffect } from 'react';
+import { Splash } from './src/screens';
+import ScreensIndex from './src';
+import Main from './src/main';
 
-import MainScreens from './src/screens';
-import AuthProvider from './src/providers/authprovider';
-import ThemeProvider from './src/providers/themeprovider';
+SplashScreen.preventAutoHideAsync();
 
-
-
-export default function App() {
-  let [fontsLoaded, fontError] = useFonts({
-    Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold
+function App() {
+  let [fontsLoaded] = useFonts({
+    Montserrat_100Thin,
+    Montserrat_400Regular,
+    Montserrat_700Bold,
   });
-  if (!fontsLoaded && !fontError) {
-    return null;
+
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+  
+  useEffect(()=>{
+    onLayoutRootView()
+  },[onLayoutRootView])
+
+  if (!fontsLoaded ) {
+    return <Splash />
   }
-  return (
-    <NavigationContainer>
-      <ThemeProvider>
-        <AuthProvider>
-          <MainScreens />
-        </AuthProvider>
-      </ThemeProvider>
-    </NavigationContainer>
-  );
+  return (<Main/> );
 }
 
+export default App;
