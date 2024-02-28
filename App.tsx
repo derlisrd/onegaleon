@@ -4,6 +4,8 @@ import {useFonts,Montserrat_100Thin,Montserrat_400Regular,Montserrat_700Bold} fr
 import { useCallback,useEffect } from 'react';
 import { Splash } from './src/screens';
 import Main from './src/main';
+import colors from './src/utils/colors';
+import { StatusBar } from 'expo-status-bar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,7 +30,13 @@ function App() {
   if (!fontsLoaded ) {
     return <Splash />
   }
-  return (<Main/> );
+  return (
+  <>
+  <Main/>
+  <StatusBar backgroundColor={colors.white} style='dark' />
+  </>
+  
+  );
 }
 
 export default App;
