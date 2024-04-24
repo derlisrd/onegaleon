@@ -1,6 +1,20 @@
 {
-  "extends": "expo/tsconfig.base",
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "strict": true
+    "baseUrl": "./src",
+    "paths": {
+      "@":[""],
+      "@components": ["components/index.ts"],
+      "@config": ["config/index.ts"],
+      "@screens": ["screens/index.ts"],
+      "@types": ["types/index.ts"],
+      "@providers": ["providers/index.ts"],
+      "@hooks": ["hooks/index.ts"],
+      "@assets/*": ["assets/*"],
+      "@env": ["../env.ts"],
+      "@api": ["services/api.ts"],
+      "@utils": ["utils/index.ts"],
+      "@models": ["models/index.ts"]
+    }
   }
 }
