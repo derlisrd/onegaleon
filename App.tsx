@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { useFonts, Montserrat_100Thin, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import { PrimaryButton, SafeArea } from '@components';
+import {  PrimaryButton, SafeArea } from '@components';
 
 
 export default function App() {
@@ -8,6 +8,8 @@ export default function App() {
   
   if (!fontsLoaded && !fontError) return null;
   
-  return <SafeArea><PrimaryButton >asdfadsf</PrimaryButton></SafeArea>
+  return <SafeArea>
+    <PrimaryButton center>boton</PrimaryButton>
+  </SafeArea>
 }
 

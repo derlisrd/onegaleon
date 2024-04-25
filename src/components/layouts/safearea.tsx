@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
-import { View } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, SafeAreaView} from "react-native";
 import { styles } from "./styles";
 
 interface SafeAreaProps {
-  children: ReactNode;
+  children?: ReactNode;
   bgColor?: string;
 }
 
