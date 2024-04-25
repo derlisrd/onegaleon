@@ -5,25 +5,39 @@ import { colors } from "config/colors";
 
 interface PrimaryButtonProps extends buttonsTypes {
   center?: boolean;
-  variant?: 'contained' | 'outlined'
+  disabled?: boolean;
+  variant?: "contained" | "outlined";
+  onPress?: () => void;
 }
 
-function PrimaryButton({ children, center, variant = 'contained' }: PrimaryButtonProps) {
+function PrimaryButton({
+  disabled = false,
+  children,
+  onPress,
+  center,
+  variant = "contained",
+}: PrimaryButtonProps) {
   return (
     <View
-      style={[
-        center
-          ? {
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center"
-            }
-          : {},
-
-      ]}
+      style={[center ? styles.center: {},]}
     >
-      <Pressable style={[variant == 'contained' ? styles.containerPrimaryButtonContained : styles.containerPrimaryButtonOutlined]}>
-        <Text style={[styles.textPrimaryButton, {color: variant == 'contained' ? colors.white : colors.primary}]}>{children}</Text>
+      <Pressable
+        onPress={disabled ? ()=>{} : onPress}
+        style={[
+          variant == "outlined"
+            ? styles.containerPrimaryButtonOutlined: styles.containerPrimaryButtonContained,
+            disabled && { opacity: 0.3 },
+        ]}
+        disabled={disabled}
+      >
+        <Text
+          style={[
+            styles.font,
+            { color: variant == "contained" ? colors.white : colors.primary },
+          ]}
+        >
+          {children}
+        </Text>
       </Pressable>
     </View>
   );

@@ -5,6 +5,11 @@ import { StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
+    center:{
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+    },
     containerPrimaryButtonContained:{
         backgroundColor:colors.primary,
         maxWidth:280,
@@ -25,9 +30,16 @@ export const styles = StyleSheet.create({
         width:'100%',
         padding:15
     },
-    textPrimaryButton:{
+    font:{
         fontFamily: fonts.normal,
         fontSize:16,
         textTransform:'uppercase'
-    }
+    },
+    disabledButton:{
+        backgroundColor: `${colors.gray[3]} !important`,
+        borderColor: `${colors.gray[3]} !important`,
+    },
+    disabledText:{
+        color: `${colors.gray[3]} !important`,
+    },
 })

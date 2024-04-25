@@ -4,6 +4,7 @@
     "baseUrl": "./src",
     "paths": {
       "@":[""],
+      "@store":["store/storage.ts"],
       "@components": ["components/index.ts"],
       "@config": ["config/index.ts"],
       "@screens": ["screens/index.ts"],

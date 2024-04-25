@@ -1,0 +1,1 @@
+export type {userDataTypes} from './user.data'
