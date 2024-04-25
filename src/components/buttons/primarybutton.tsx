@@ -1,12 +1,14 @@
 import { Pressable, Text, View } from "react-native";
 import { buttonsTypes } from "./types";
 import { styles } from "./styles";
+import { colors } from "config/colors";
 
 interface PrimaryButtonProps extends buttonsTypes {
   center?: boolean;
+  variant?: 'contained' | 'outlined'
 }
 
-function PrimaryButton({ children, center }: PrimaryButtonProps) {
+function PrimaryButton({ children, center, variant = 'contained' }: PrimaryButtonProps) {
   return (
     <View
       style={[
@@ -20,8 +22,8 @@ function PrimaryButton({ children, center }: PrimaryButtonProps) {
 
       ]}
     >
-      <Pressable style={styles.containerPrimaryButton}>
-        <Text style={styles.textPrimaryButton}>{children}</Text>
+      <Pressable style={[variant == 'contained' ? styles.containerPrimaryButtonContained : styles.containerPrimaryButtonOutlined]}>
+        <Text style={[styles.textPrimaryButton, {color: variant == 'contained' ? colors.white : colors.primary}]}>{children}</Text>
       </Pressable>
     </View>
   );

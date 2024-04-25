@@ -9,7 +9,7 @@ export default function App() {
   if (!fontsLoaded && !fontError) return null;
   
   return <SafeArea>
-    <PrimaryButton center>boton</PrimaryButton>
+    <PrimaryButton center variant='outlined'>boton</PrimaryButton>
   </SafeArea>
 }
 
