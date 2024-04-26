@@ -1,12 +1,22 @@
 
-import { TextInput, View } from "react-native";
+import { TextInput, TextInputProps, View } from "react-native";
 import { styles } from "./styles";
+import { ReactNode } from "react";
 
-function Input() {
-    return ( <View style={styles.container}>
-        <TextInput 
-            style={styles.input}
-        />
+interface InputProps extends TextInputProps{
+    icon?: ReactNode
+}
+
+
+function Input({icon,placeholder}:InputProps) {
+    return ( <View style={styles.main}>
+        <View style={styles.container}>
+            {icon && <View style={styles.icon}>{icon}</View>}
+            <TextInput 
+                style={styles.input}
+                placeholder={placeholder}
+            />
+        </View>
     </View> );
 }
 

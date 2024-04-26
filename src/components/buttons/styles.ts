@@ -10,6 +10,12 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    button:{
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row',
+        gap:12
+    },
     containerPrimaryButtonContained:{
         backgroundColor:colors.primary,
         maxWidth:280,

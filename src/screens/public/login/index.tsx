@@ -1,8 +1,10 @@
 import { Input, SafeArea } from "@components";
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 function LoginScreen() {
     return <SafeArea>
-        <Input />
+        <Input 
+            placeholder="hola..."
+        />
     </SafeArea>
 }
 
