@@ -1,17 +1,23 @@
 import { Input, PrimaryButton, SafeArea, Title } from "@components";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { useThemeStore } from "store/theme.store";
 
-import { useTheme } from '@react-navigation/native';
 
 function LoginScreen() {
-    const {colors} = useTheme()
+    const {setTheme} = useThemeStore()
+
+    const cambiar = ()=>{
+        setTheme()
+    }
     
     return <SafeArea>
         <Title align="center" uppercase >login</Title>
         <Input 
-            placeholder="hola..."
+            placeholder="Email"
         />
-        <PrimaryButton center>cambiar</PrimaryButton>
+        <Input 
+            placeholder="Contraseña"
+        />
+        <PrimaryButton onPress={cambiar} center>cambiar</PrimaryButton>
     </SafeArea>
 }
 
