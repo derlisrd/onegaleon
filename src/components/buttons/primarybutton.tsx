@@ -1,8 +1,8 @@
-import { Pressable, Text, View } from "react-native";
+import { DimensionValue, Pressable, Text, View } from "react-native";
 import { buttonsTypes } from "./types";
 import { styles } from "./styles";
 import { colors } from "config/colors";
-import { ElementType, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface PrimaryButtonProps extends buttonsTypes {
   center?: boolean;
@@ -17,6 +17,7 @@ function PrimaryButton({
   children,
   onPress,
   center,
+  mt, mx, my,mb,
   variant = "contained",
   icon : Icon
 }: PrimaryButtonProps) {
@@ -31,6 +32,7 @@ function PrimaryButton({
           variant == "outlined"
             ? styles.containerPrimaryButtonOutlined: styles.containerPrimaryButtonContained,
             disabled && { opacity: 0.3 },
+            { marginTop: mt, marginHorizontal: mx, marginVertical: my,marginBottom:mb}
         ]}
         disabled={disabled}
       >

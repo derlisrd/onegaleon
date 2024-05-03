@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from 'expo-status-bar';
 import { useThemeStore } from "store/theme.store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import AuthScreens from "./auth";
 
 function ScreensMaster() {
   const { isAuth } = useAuth();
@@ -13,7 +14,7 @@ function ScreensMaster() {
 
   return (
     <NavigationContainer theme={theme}>
-      <SafeAreaProvider>{isAuth ? <></> : <PublicScreens />}</SafeAreaProvider>
+      <SafeAreaProvider>{isAuth ? <AuthScreens /> : <PublicScreens />}</SafeAreaProvider>
       <StatusBar style={theme.dark ? 'light' : 'dark'} />
     </NavigationContainer>
   );

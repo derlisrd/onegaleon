@@ -7,6 +7,7 @@ type AuthContextTypes = {
     isAuth?: boolean
     isLoading: boolean
     tryLogin : ()=> Promise<void>
+    logout : ()=> Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextTypes>({
@@ -14,7 +15,8 @@ export const AuthContext = createContext<AuthContextTypes>({
     setUserData:()=>{},
     isAuth:false,
     isLoading: true,
-    tryLogin: async()=>{}
+    tryLogin: async()=>{},
+    logout: async()=>{}
 })
 
 interface AuthProviderProps {
@@ -29,18 +31,21 @@ export default function AuthProvider({children}:AuthProviderProps){
     const tryLogin = async() : Promise<void>=>{
         setIsAuth(true)
     }
+    const logout = async() : Promise<void>=>{
+        setIsAuth(false)
+    }
 
     const checkAuth = useCallback( async() : Promise<void>=>{
         setIsLoading(false)
     },[])
 
 
-    const values = {userData,setUserData,isAuth,isLoading,tryLogin}
+    const values = {userData,setUserData,isAuth,isLoading,tryLogin,logout}
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
 }
 
 
 export const useAuth = ()=>{
-    const {userData,setUserData,isAuth,isLoading,tryLogin} = useContext(AuthContext)
-    return {userData,setUserData,isAuth,isLoading,tryLogin}
+    const {userData,setUserData,isAuth,isLoading,tryLogin,logout} = useContext(AuthContext)
+    return {userData,setUserData,isAuth,isLoading,tryLogin,logout}
 }

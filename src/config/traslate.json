@@ -1,0 +1,25 @@
+{
+    "es":{
+        "label":"Español",
+        "hi":"Hola",
+        "login":"Entrar",
+        "register":"Registro"
+    },
+    "pt":{
+        "label":"Portugues",
+        "hi":"Hola",
+        "login":"Entrar",
+        "register":"Registro"
+    },
+    "en":{
+        "label":"English",
+        "hi": "Hi",
+        "login":"Login",
+        "register":"Register"
+    },
+    "languages":[
+        "English",
+        "Portugues",
+        "Español"
+    ]
+}
