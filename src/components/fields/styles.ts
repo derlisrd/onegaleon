@@ -7,9 +7,9 @@ export const styles = StyleSheet.create({
         padding:12,
     },
     input:{
-        padding:14,
+        padding:12,
         fontFamily: fonts.normal,
-        fontSize:15
+        fontSize:16
     },
     icon:{
         justifyContent:'center',
@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
         paddingLeft:12
     },
     container:{
-        backgroundColor: colors.gray[2],
         borderRadius:12,
         alignItems:'center',
         flexDirection:'row',

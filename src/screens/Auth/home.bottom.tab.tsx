@@ -1,24 +1,29 @@
 import { AuthScreenList } from "screens/list/auth.list";
-import { MaterialBottomTabScreenProps, createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { useTheme } from '@react-navigation/native';
+
+import { createBottomTabNavigator, BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+
 import { BottomTapList } from "screens/list/bottom.tap.list";
-import { colors } from "config/colors";
 import Inicio from "./inicio";
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/Octicons'
 import Movimientos from "./mov";
 import Cuenta from "./cuenta";
+import { View } from "react-native";
 
-type Props = MaterialBottomTabScreenProps<AuthScreenList, 'homebottomtap'>;
+type Props = BottomTabScreenProps<AuthScreenList, 'homebottomtap'>;
 
-const {Screen,Navigator} = createMaterialBottomTabNavigator<BottomTapList>();
+const {Screen,Navigator} = createBottomTabNavigator<BottomTapList>();
 
 
 
 function HomeBottomTab() {
+    const {colors} = useTheme()
     return <Navigator initialRouteName='inicio'
-    activeIndicatorStyle={{ backgroundColor:'transparent'  }}
-    activeColor={colors.primary}
-    inactiveColor={colors.gray[2]}
-    barStyle={{ backgroundColor:colors.white,borderTopWidth:1, borderTopColor: colors.gray[1] }}
+    screenOptions={{ 
+        headerShown:false, 
+        tabBarInactiveBackgroundColor:'transparent',
+        tabBarStyle: {position : 'absolute', bottom:0,backgroundColor:colors.background,borderWidth:0}
+    }}
     >
         <Screen name='inicio' 
             component={Inicio} 
@@ -26,7 +31,7 @@ function HomeBottomTab() {
                 {
                     tabBarLabel:'Inicio',
                     tabBarIcon: ({ color }) => (
-                        <Icon name="home" color={color} size={28} />
+                        <Icon name="home" color={color} size={24} />
                       )
                 }
             } 
@@ -35,9 +40,33 @@ function HomeBottomTab() {
             component={Movimientos} 
             options={
                 {
-                    tabBarLabel:'Movimientos',
+                    tabBarLabel:'Mov',
                     tabBarIcon: ({ color }) => (
-                        <Icon name="moving" color={color} size={28} />
+                        <Icon name="rocket" color={color} size={24} />
+                      )
+                }
+            } 
+        />
+        <Screen name='add' 
+            component={Movimientos} 
+            options={
+                {
+                    tabBarLabel:'',
+                    tabBarIcon: ({ color , size, focused}) => (
+                        <View style={{ position:'absolute',bottom:12, backgroundColor: focused ? color : colors.primary , borderRadius: 24,padding:12 }}>
+                            <Icon name="plus-circle" color='#fff' size={36}/>
+                        </View>
+                      )
+                }
+            } 
+        />
+        <Screen name='noti' 
+            component={Movimientos} 
+            options={
+                {
+                    tabBarLabel:'Notificacion',
+                    tabBarIcon: ({ color }) => (
+                        <Icon name="bell" color={color} size={24} />
                       )
                 }
             } 
@@ -48,7 +77,7 @@ function HomeBottomTab() {
                 {
                     tabBarLabel:'Cuenta',
                     tabBarIcon: ({ color }) => (
-                        <Icon name="person" color={color} size={28} />
+                        <Icon name="person" color={color} size={24} />
                       )
                 }
             } 

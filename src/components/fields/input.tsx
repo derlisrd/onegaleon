@@ -2,6 +2,7 @@
 import { TextInput, TextInputProps, View } from "react-native";
 import { styles } from "./styles";
 import { ReactNode } from "react";
+import { useTheme } from "@react-navigation/native";
 
 interface InputProps extends TextInputProps{
     icon?: ReactNode
@@ -9,11 +10,13 @@ interface InputProps extends TextInputProps{
 
 
 function Input({icon,placeholder}:InputProps) {
+    const {colors} = useTheme()
     return ( <View style={styles.main}>
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: colors.card,borderColor: colors.border,borderWidth:1}]}>
             {icon && <View style={styles.icon}>{icon}</View>}
             <TextInput 
-                style={styles.input}
+                placeholderTextColor='#ccc'
+                style={[styles.input,{color: colors.text}]}
                 placeholder={placeholder}
             />
         </View>
