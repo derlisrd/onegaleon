@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FAD707"
+      "backgroundColor": "#EFF1E6"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FAD707"
+        "backgroundColor": "#EFF1E6"
       },
       "versionCode": 30,
       "package": "com.derlisrd.onegaleon"

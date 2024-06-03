@@ -8,7 +8,6 @@
       "@store":["store/storage.ts"],
       "@components": ["components/index.ts"],
       "@config": ["config/index.ts"],
-      "@screens": ["screens/index.ts"],
       "@types": ["types/index.ts"],
       "@providers": ["providers/index.ts"],
       "@hooks": ["hooks/index.ts"],

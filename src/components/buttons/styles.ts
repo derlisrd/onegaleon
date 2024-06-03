@@ -14,32 +14,26 @@ export const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row',
-        gap:12
+        gap:12,
+        borderColor:colors.primary,
+        maxWidth:320,
+        width:'100%',
+        borderRadius:8,
+        padding:12,
+        borderWidth:1
     },
     containerPrimaryButtonContained:{
         backgroundColor:colors.primary,
-        maxWidth:280,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:12,
-        width:'100%',
-        padding:15
     },
     containerPrimaryButtonOutlined:{
         backgroundColor:colors.white,
-        borderColor:colors.primary,
-        borderWidth:1,
-        maxWidth:280,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:12,
-        width:'100%',
-        padding:15
+    },
+    containerButton:{
+        
     },
     font:{
-        fontFamily: fonts.normal,
-        fontSize:16,
-        textTransform:'uppercase'
+        fontFamily: fonts.semibold,
+        fontSize:14,
     },
     disabledButton:{
         backgroundColor: `${colors.gray[3]} !important`,

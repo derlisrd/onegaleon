@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
     input:{
         padding:12,
         fontFamily: fonts.normal,
-        fontSize:16
+        fontSize:14,
+        
     },
     icon:{
         justifyContent:'center',
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
         paddingLeft:12
     },
     container:{
-        borderRadius:12,
+        borderRadius:8,
         alignItems:'center',
         flexDirection:'row',
         paddingHorizontal:0,
