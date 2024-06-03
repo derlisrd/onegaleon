@@ -12,7 +12,7 @@ interface InputProps extends TextInputProps{
 function Input({icon,placeholder}:InputProps) {
     const {colors} = useTheme()
     return ( <View style={styles.main}>
-        <View style={[styles.container, {backgroundColor: colors.card}]}>
+        <View style={[styles.container, {backgroundColor: colors.card,borderColor: colors.border,borderWidth:1}]}>
             {icon && <View style={styles.icon}>{icon}</View>}
             <TextInput 
                 placeholderTextColor='#ccc'
